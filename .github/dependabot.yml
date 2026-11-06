@@ -1,0 +1,20 @@
+# Version updates, weekly and grouped, so the queue stays reviewable and the
+# dependencies never drift far (as in reactome/WebsiteAngular and the other
+# exporters). The dist branch is built from main, so updates go to main.
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 5
+      groups:
+          npm:
+              patterns: ['*']
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: weekly
+      groups:
+          actions:
+              patterns: ['*']
