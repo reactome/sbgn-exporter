@@ -21,10 +21,22 @@ are typed; others are ignored.
 - A node is written unless `isFadeOut` or `isCrossed` is present (any value, as Java tests
   for null); an edge unless `isFadeOut` is present.
 - A connector whose edge id names no edge is an error naming both ids (Java throws).
-- Numbers are read as doubles and written as Java floats (`Math.fround`, then
-  `java-float`).
+- An edge none of whose segments touches its shape is an error (Java's
+  `portCandidates.get(0)` throws); so is an empty or missing backbone where Java reads it
+  (an INPUT or OUTPUT without segments of its own: `subList` out of bounds, or a null
+  list).
+- **Numbers follow Java's arithmetic step by step.** Java takes `floatValue()` of the
+  layout's doubles and computes in float from there (SbgnConverter.java:232-240: the
+  reaction's box, `w / 3`, `4 * w / 3`, `x - w / 3`, `r * 2`, `c - r`). Each float
+  operation is followed by `Math.fround`, in Java's order, never one `fround` at the end.
+  Where Java computes in doubles (`Coordinate.minus`, `add`, `divide` for a BOX's centre;
+  the `Math.abs(…) > w` test, a double against a widened float), so do we, with `fround`
+  once when Java calls `floatValue()`. Every number is written with `java-float`.
+- **The touch test** (`ShapeWrapper`) truncates its bounds toward zero, as `intValue()`
+  does (`Math.trunc`, not `Math.floor`), and compares the segment's double coordinates with
+  them.
 - Reading never alters the layout (D2): every list is read, never sorted or reversed in
-  place.
+  place; reversals are made on copies.
 
 ## SBGN-ML document (output model)
 
@@ -40,7 +52,8 @@ process glyphs in edge order; then arcs, by node order and, within a node, conne
 order. Java's own order is random; this one is fixed by the layout.
 
 **Ids:** as Java writes them (research R2). The unit-of-information counter runs across
-the document in node order, as Java's does.
+the document in node order, as Java's does, counting only the attachments of nodes that
+are written: a faded-out or crossed-out node's attachments take no number.
 
 **Validation:** every arc has a start and an end, or the conversion fails naming it; ids
 are unique in the document, or it fails naming the repeat (Java would write it; release 98
@@ -53,8 +66,15 @@ has none).
 | D1   | order of glyphs and arcs                                                | research R3.1       |
 | D2   | points of arcs of an edge with an OUTPUT, as Java's reversal would give | R3.2                |
 | D3   | `stoichiometry` → `cardinality`                                         | R3.4                |
-| D4   | label box widths, Java's fallback font against Arial                    | R3.3                |
-| D5   | a production arc's start, next and end order                            | R3.5                |
+| D4   | label box widths; only in bulk mode, against the published bulk file    | R3.3                |
+| D5   | an OUTPUT with its own segments: start and end swapped, nexts identical | R3.5                |
+| D6   | an OUTPUT without its own segments: start and end on the picked segment | R3.6                |
+
+**The rule for points (D2, D5, D6):** Java's points must equal one of Java's possible
+readings recomputed from the layout (the backbone as given or reversed when the arc starts,
+and for an OUTPUT reversed once more partway through, research R3.7); ours must equal the
+reading with the backbone as given, with D6 and then D5 applied. Anything else is
+undeclared.
 
 ## Event (website, WebsiteAngular's)
 

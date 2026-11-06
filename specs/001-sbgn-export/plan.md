@@ -7,7 +7,7 @@
 ## Summary
 
 One conversion, from a diagram layout to an SBGN-ML Process Description document, ported
-from diagram-exporter's `SbgnConverter` and checked against Java's files by id, with five
+from diagram-exporter's `SbgnConverter` and checked against Java's files by id, with six
 declared fixes (spec FR-003, research R3). Around it:
 
 - **a library** the website's node content service imports, pinned to a commit, and calls
@@ -59,7 +59,7 @@ _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 | Principle                                    | How this plan meets it                                                                                                             |
 | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | I. One implementation                        | One `toSbgn` for both; the bulk entry and the website's answer for a pathway are byte-identical (SC-004, a test).                  |
-| II. Match today; fix only obvious bugs       | Java's mapping ported as is (R2); five declared differences, each with evidence (R3); improvements listed as issues (T028).        |
+| II. Match today; fix only obvious bugs       | Java's mapping ported as is (R2); six declared differences, each with evidence (R3); improvements listed as issues (T028).         |
 | III. Release files and the graph; no Java    | Layouts from diagram files or the website's reaction layout; the graph only for the bulk list; Java only in the reference harness. |
 | IV. Every file valid                         | Schema check in CI on every fixture's output; the whole release once (SC-003).                                                     |
 | V. Verify the instrument; prove a test fails | The comparison is shown failing on a planted difference of each kind; each fix's test is seen failing first.                       |
@@ -136,8 +136,15 @@ website's import pulls in none of them.
   Checked against all of a release's numbers (`ci/float-check.ts`) before parity is
   claimed.
 - **The width table.** A character Java measures differently from the table changes a box
-  width. Checked against every label box of the sample's content service answers; the
+  width. Checked against every label box of the sample's content service answers (T033)
+  and against a whole release measured by Java with Arial (T032), neither allowing D4; the
   table records how Java measures a missing glyph.
+- **Floats computed in a different order.** Java computes some boxes and ports in float,
+  step by step; one `fround` at the end can give a different float. Each step is rounded in
+  Java's order (data-model.md), with a test where the two differ (T008).
+- **The website's image.** Its Dockerfile installs root dependencies by registry version,
+  which for this package would be an unclaimed npm name. T018 changes it to the lockfile's
+  pinned git commit of the `dist` branch, and builds the image to prove it.
 - **The website's half** depends on WebsiteAngular's own spec for its endpoint; this
   repository's tasks only name it (spec FR-012).
 

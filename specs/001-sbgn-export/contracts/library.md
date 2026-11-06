@@ -17,7 +17,10 @@ const name: string = sbgnFileName('R-HSA-69615'); // 'R-HSA-69615.sbgn'
   newline, as UTF-8 text. Pure: no files, no network, no clock, no randomness. The same
   layout gives the same string.
 - **Errors:** `SbgnLayoutError` (exported) for a layout it cannot convert: a connector
-  naming a missing edge, an arc without points, a repeated id, a field of the wrong type.
+  naming a missing edge; an edge none of whose segments touches its shape (Java's index
+  out of bounds); an INPUT or OUTPUT without segments of its own on an empty or missing
+  backbone (Java's index out of bounds or null); an arc without points; a repeated id; a
+  field of the wrong type.
   Its message names the object's ids. The caller answers it as Java answers a failed
   conversion: a 500.
 - **`sbgnFileName(stableId: string): string`**: `{stableId}.sbgn`; throws on a value that is

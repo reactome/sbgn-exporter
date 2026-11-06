@@ -34,9 +34,11 @@ What Java writes is not stable. Measured on release 98 (research R3):
   own line segments in place, so the arcs written after it read them backwards. In
   Cell Cycle Checkpoints, 7 of 253 arcs have different coordinates in the bulk file and
   in the content service's answer.
-- **Its text widths depend on the machine.** Label boxes are measured in "Arial" with
-  whatever fonts the machine has: the bulk file's widths are larger than the content
-  service's for the same labels ("cytosol": 56 against 48).
+- **Some output arcs are a single point.** The same reversal happens halfway through
+  writing an output arc that has no line of its own, so its start and end are read from
+  different segments. In Cell Cycle Checkpoints, 32 of 94 production arcs are one point.
+- **Its text widths differ between the two.** The bulk file's label widths differ from
+  Arial's, which the content service's answers have ("cytosol": 56 against 48).
 - **It is often invalid.** 550 of the 1,390 bulk files fail the libSBGN 0.2 schema they
   declare, every failure the same: a glyph class (`stoichiometry`) that version does not
   have.
@@ -171,9 +173,13 @@ whole bulk file of a release once, against the libSBGN schema the files declare.
 - **Faded-out or crossed-out objects** (a disease diagram's normal reactions, a crossed-out
   entity): Java leaves out a node that has either mark and an edge that is faded out, and
   arcs to those; the exporter does the same. Compartments are always written.
-- **A participant whose line has no segments:** Java writes the arc without its start and
-  end, which is invalid. None appears in release 98; the exporter refuses to write an
-  invalid arc and names it.
+- **A reaction whose own line is missing or broken:** Java fails or writes an invalid arc.
+  With no segments, an input or output without a line of its own throws (an index out of
+  bounds on an empty list, or a null list), and a catalyst or regulator without one is
+  written with no start or end, which is invalid. If none of a reaction's segments touches
+  its shape, placing its ports throws. None appears in release 98. The exporter fails on
+  each, naming the objects, where Java throws, and refuses the invalid arc: the website
+  answers a 500 and the bulk run names the pathway, as with Java.
 - **Labels with characters XML must escape** (`&`, `<`, `>`, `"`), and names outside ASCII:
   written as Java writes them (32 of release 98's files have escapes).
 - **An event with no diagram at all** (a pathway whose diagram file is missing): the
@@ -202,18 +208,27 @@ whole bulk file of a release once, against the libSBGN schema the files declare.
   kinds:
   - **D1, order:** glyphs and arcs are written in a fixed order derived from the layout,
     not Java's random one;
-  - **D2, arc geometry read from the unaltered layout:** every arc's points are taken
-    from the layout as it is in the file, not from segments an earlier arc reversed;
+  - **D2, arc geometry read from the unaltered layout:** every arc's points are computed
+    as Java computes them from the reaction's line as the layout gives it, not as an
+    earlier output arc left it reversed (research R3.2);
   - **D3, the stoichiometry glyph's class:** `cardinality`, which libSBGN 0.2 has, in
     place of `stoichiometry`, which it does not;
   - **D4, text widths:** the label boxes' widths are those Java measures with Arial, the
-    font it asks for, on every run, not whatever font the machine has;
-  - **D5, output arcs' points in the arc's own direction:** a production arc's points run
-    from its source (the reaction) to its target (the product). Java reverses the middle
-    points but not the start and end (research R3.5). Decided by the user, 6 Nov 2026.
+    font it asks for, as the content service's answers have them. Accepted as a
+    difference only against the published bulk file; against any Java answer measured
+    with Arial, widths must be identical;
+  - **D5, output arcs with a line of their own run from source to target:** for such a
+    production arc, our start is Java's end and our end is Java's start; the next points
+    are Java's, unchanged (research R3.5);
+  - **D6, output arcs without a line of their own are drawn along the reaction's output
+    segment:** Java reads their start before reversing the reaction's line and their end
+    after, which on a two-segment line gives a single point. Ours start and end on the
+    segment Java picks, from the reaction to the product (research R3.6). D5 does not
+    apply to them.
 
-  D4 and D5, and the bulk file's species (FR-013), were decided by the user on 6 Nov 2026
-  (see Decisions).
+  How D2, D5 and D6 compose, and how the comparison checks them, is research R3.7. D4, D5,
+  D6 and the bulk file's species (FR-013) were decided by the user on 6 Nov 2026 (see
+  Decisions).
 
 - **FR-004**: The exporter MUST write the same bytes for the same layout on every run and
   on every machine.
@@ -317,14 +332,16 @@ Decided by the user on 6 Nov 2026:
   pathways with diagrams, which is what the download page offers. SBGN for other species is
   available per event on the website; a bulk file for all species would be an improvement,
   an issue for the team.
-- **D4, Arial's widths.** Java asks for Arial at 16 points and gets whatever the machine
-  has. The content service's answers, which the website serves, measure with Arial; the
-  release's bulk run did not, and its widths are wider. The exporter matches Java's Arial
-  widths, not the bulk file's fallback widths.
+- **D4, Arial's widths.** Java asks for Arial at 16 points. The content service's
+  answers, which the website serves, have Arial's widths; the bulk file's widths differ.
+  The exporter matches Java's Arial widths, not the bulk file's.
 - **D5, production arcs fixed.** Today's production arcs start at the product and end at
   the reaction while naming the reaction as their source, with their middle points
   reversed: half of a reversal Java meant to make. The exporter writes their points from
   the reaction to the product.
+- **D6, single-point output arcs fixed.** An output arc with no line of its own is drawn
+  along the reaction's output segment to the product, not as the single point Java
+  writes.
 
 ## Assumptions
 

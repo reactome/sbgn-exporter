@@ -77,19 +77,33 @@ same pathway in the same release.
    objects, and the arcs from a `HashSet` of participants. None of those classes overrides
    `hashCode`, so the order is set by identity hashes and changes from run to run. The two
    files' glyph and arc order differ throughout.
-2. **Arc geometry follows that order.** `Participant.getArcNextList` for an OUTPUT
-   reverses `edge.getSegments().subList(0, size)`, a view, so the edge's own segment list is
-   reversed in place. Later participants of that edge (an INPUT with no segments of its own
-   takes `edge.getSegments().subList(0, 1)`) read it backwards. 7 of 253 arcs in the two
-   files have different points. **Fix (D2):** read every arc from the unaltered layout.
-   Which of Java's two readings is "today's" is itself random, so the fix takes the reading
-   Java gives an arc written before any OUTPUT of its edge.
+2. **Arc geometry follows that order.** For an OUTPUT, `Participant.getArcNextList`
+   reverses `edge.getSegments().subList(0, size)` with `Collections.reverse`
+   (Participant.java:98-99). A sublist is a view, so the reaction's own segment list (its
+   "backbone") is reversed in place, once for every OUTPUT arc written. Every later read of
+   that list by an arc of the same reaction sees it as given or reversed, depending on how
+   many of its OUTPUT arcs Java happened to write first. The reads that depend on it:
+   - an INPUT without segments of its own: its start and end from `subList(0, 1)`, and its
+     next points from the walk over the backbone;
+   - a CATALYST, INHIBITOR or ACTIVATOR without segments of its own: its start and end from
+     the whole backbone;
+   - an OUTPUT with segments of its own: its next points, from the walk over the backbone it
+     has just reversed;
+   - an OUTPUT without segments of its own: 6 below.
+
+   7 of 253 arcs in the two files have different points. **Fix (D2):** every arc is
+   computed from the backbone as the layout gives it, as Java computes an arc of a reaction
+   none of whose OUTPUT arcs has been written yet; Java's reversal is made on a copy.
+
 3. **Text widths.** Labels are measured with `new Font("Arial", PLAIN, 16)` through AWT
-   font metrics, which fall back to another font when Arial is not installed. The bulk
-   file's widths are larger (a unit of information "P": 10 against 11; "cytosol": 56
+   font metrics. The bulk file's widths differ from Arial's, which the content service's
+   answers have; they are larger (a unit of information "P": 10 against 11; "cytosol": 56
    against 48; "nucleoplasm": 97 against 87). The content service's are Arial's.
    **Fix (D4), decided by the user on 6 Nov 2026:** Java's Arial widths, as the content
-   service's answers have them, always; not the bulk file's fallback widths. WebsiteAngular's reaction-layout port already
+   service's answers have them, always; not the bulk file's widths. So that D4 cannot hide a
+   width error, the comparison accepts it only in its bulk mode, against the published bulk
+   file; every other comparison, including one over a whole release against Java's own
+   answers measured with Arial (task T032), expects identical widths. WebsiteAngular's reaction-layout port already
    measures Arial from a table taken from Java (spec 006 T092, `text-widths.ts`); this
    repository takes its own table for Arial plain 16 the same way (R5).
 4. **Invalid files.** Validated with libxml2 against libSBGN 0.2's `SBGN.xsd`
@@ -101,13 +115,53 @@ same pathway in the same release.
    the connector's last, at the reaction; only the middle points are reversed. R-HSA-6805479:
    start (455, 185) at the product, next (299, 162.5), next (374, 185), end (299, 162.5). A
    reader drawing it goes from the product to the reaction, back out and in again.
-   **Fix (D5), decided by the user on 6 Nov 2026:** write the points from source to
-   target, starting at the reaction's side and ending at the product.
+   **Fix (D5), decided by the user on 6 Nov 2026:** for an OUTPUT with segments of its own,
+   our start is Java's end, our end is Java's start, and the next points are Java's,
+   unchanged. In R-HSA-6805479: start (299, 162.5), next (299, 162.5), next (374, 185), end
+   (455, 185). An OUTPUT without segments of its own is 6's, not D5's.
+6. **Output arcs that are a single point.** An OUTPUT without segments of its own takes
+   `edge.getSegments().subList(1, 2)`, or the whole backbone when it has one segment
+   (Participant.java:39-40). That sublist is a view too. `getArc` reads `start` from it
+   (SbgnConverter.java:294-297) before `getArcNextList` reverses the backbone in place, and
+   `end` after (SbgnConverter.java:302-305). With the backbone `s0, s1, …` as given when the
+   arc starts:
+   - **one segment:** start `s0.from`, end `s0.to`; reversing one segment changes nothing;
+   - **two segments:** start `s1.from`, end `s0.to`. The two segments meet at the reaction,
+     so start and end are the same point, with no next points: 32 of R-HSA-69620's 94
+     production arcs. With the backbone reversed when the arc starts (D2), start `s0.from`
+     and end `s1.to` instead, a line through the whole reaction;
+   - **three or more segments:** start `s1.from`, end the second segment of the reversed
+     list, `s(n-2).to`. Not seen in the files read; a fixture pins it (T013).
+
+   **Fix (D6), decided by the user on 6 Nov 2026:** start and end both on the segment Java
+   picks (`s1`, or `s0` for one segment): start at its `from`, at the reaction, and end at
+   its `to`, towards the product. The next points are those of Java's walk over a reversed
+   copy of the backbone. D5 is not applied: the arc already runs from the reaction to the
+   product.
+
+7. **How D2, D5 and D6 compose.** Ours are computed in three steps:
+   1. **D2:** the backbone as the layout gives it, with every reversal made on a copy;
+   2. **D6:** for an OUTPUT without segments of its own, start and end from the segment
+      Java picks, as above;
+   3. **D5:** for an OUTPUT with segments of its own, start and end swapped.
+
+   Every other arc is D2 alone. **The comparison** (R12) recomputes Java's possible
+   readings of each arc from the layout: the backbone as given or reversed when the arc
+   starts, and, for an OUTPUT, reversed once more partway through the arc, as Java does. It
+   accepts Java's points only if they equal one of those readings exactly, and ours only if
+   they equal the reading with the backbone as given, with D6 and D5 applied. Any other
+   change of points is undeclared, with or without the layout.
 
 No other kind of difference was seen between the two files: classes, ids, labels, boxes
 and ports are identical. Release 98 has no repeated ids and no arc without points.
 
-**Decision:** D1 (a fixed order) to D5 are the declared differences (spec FR-003).
+**Not yet checked: the bulk file's text encoding.** diagram-exporter's command line reads
+each diagram file with `Charset.defaultCharset()` (Main.java:258), so on a machine whose
+default is not UTF-8, names outside ASCII would be misread. The bulk file has 139 such
+labels. Before SC-001 they are checked against the diagram files' names (task T034); a
+mismatch is brought to the user as a candidate declared difference, not fixed silently.
+
+**Decision:** D1 (a fixed order) to D6 are the declared differences (spec FR-003).
 Everything else matches Java byte for byte once order is set aside.
 
 ## R4. Writing as libSBGN 0.2 writes
@@ -142,7 +196,8 @@ service's answers (R3.3).
 **Decision:** a table of Arial plain 16 advances, taken once from Java on a machine with
 Arial (as WebsiteAngular's reaction-layout port took its table), committed with the
 program that made it, and checked against every label box in a set of the content
-service's answers. A character outside the table is measured as Java measures a missing
+service's answers (task T033) and against a whole release measured by Java with Arial
+(task T032). A character outside the table is measured as Java measures a missing
 glyph, which the table also records.
 
 **Alternatives:** measuring with a font file at run time (needs the font, which is not
@@ -244,22 +299,32 @@ site after the switch, with a pathway that has compartments and modifications (N
 
 A program in this repository, `ci/compare.ts`, parses two documents and compares glyph by
 glyph and arc by arc, by id: class, label, boxes, ports, child glyphs, source, target and
-points. Each difference is given a kind: D1 to D5 when it is explained by a declared
-difference, "undeclared" otherwise. It fails on any undeclared one. For the comparison to
-see D2 and D5 as declared, it is told the layout; without it, any geometry difference is
-undeclared. Parsing uses `saxes` (ISC), a small streaming parser, in the comparison only;
-the exporter itself has no dependency.
+points. Attribute values are compared as the strings written, never as numbers, since
+FR-005 is about bytes: `48.0` and `48` differ. Each difference is given a kind: D1 to D6
+when it is explained by a declared difference, "undeclared" otherwise. It fails on any
+undeclared one.
+
+- **Points (D2, D5, D6)** need the layout: a points difference is declared only if Java's
+  points are one of its possible readings and ours the deterministic one (R3.7). Without
+  the layout, any points difference is undeclared.
+- **Widths (D4)** are declared only in bulk mode (`--bulk`), against the published bulk
+  file. Everywhere else a width difference is undeclared, so the table's errors show. Parsing uses `saxes` (ISC), a small streaming parser, in the comparison only;
+  the exporter itself has no dependency.
 
 It runs over:
 
 - the fixtures, against Java's answers for them, in CI;
-- a release's published bulk file, all of it, once (SC-001);
+- a release's published bulk file, all of it, once, in bulk mode (SC-001): names, the
+  list, classes and everything else checked, widths excepted;
+- a whole release's Java answers measured with Arial (T032), without bulk mode: widths
+  checked;
 - the website's sample, in WebsiteAngular, against the content service's answers.
 
 ## R13. Java's answers for the fixtures
 
 Java's converter cannot be fed a layout through the content service. **Decision:** a small
 harness under `ci/reference/` runs diagram-exporter 2.0.12's `SbgnConverter` on a layout
-file in a container (Java 11, with Arial), and writes its answer. It is run by hand when a
+file in a container (Java 11, with Arial, run with no network), and writes its answer.
+It can also run over a whole folder of layouts (T032). It is run by hand when a
 fixture is added, never in CI, and its answers are committed beside the fixtures. Being
 Java's, they carry Java's random order and D2's variation: the comparison expects both.
