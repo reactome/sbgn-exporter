@@ -51,6 +51,13 @@ jobs:
             - name: Lint
               run: npm run lint
 
+            # xmllint, for ci/validate.sh and its tests (spec 001 T003, research R11).
+            - name: libxml2's xmllint
+              run: |
+                  sudo apt-get update -qq
+                  sudo apt-get install -y -qq --no-install-recommends libxml2-utils
+                  xmllint --version
+
             - name: Unit tests
               run: npm test
 
