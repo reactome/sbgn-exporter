@@ -1,0 +1,26 @@
+# Contract: the website's endpoint (WebsiteAngular's to build)
+
+`GET /ContentService/exporter/event/{identifier}.sbgn`, answered by the website's node
+content service with this library. Recorded here so both repositories hold the same
+contract; the endpoint, its routes and its comparison are specified and tracked in
+`reactome/WebsiteAngular` (spec FR-012). Every line below is Java's answer today, measured
+on a local deployment on 6 Nov 2026.
+
+| Request                                  | Status | Headers                                                                                                                                         | Body                                                                                                                                                  |
+| ---------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| a pathway or reaction, by stable id      | 200    | `Content-Type: application/sbgn+xml;charset=UTF-8`, `Content-Disposition: attachment; filename="{stId}.sbgn"`, `Access-Control-Allow-Origin: *` | the document                                                                                                                                          |
+| the same, by dbId or versioned stable id | 200    | the same, named by the stable id                                                                                                                | the same document                                                                                                                                     |
+| a subpathway with no diagram of its own  | 200    | named by the subpathway's stable id                                                                                                             | the parent diagram's document                                                                                                                         |
+| not an event (`R-ALL-29358`)             | 400    | `Content-Type: application/json;charset=UTF-8`                                                                                                  | `{"code":400,"reason":"BAD_REQUEST","url":…,"messages":["The identifier 'R-ALL-29358' does not correspond to a pathway or reaction"],"targets":null}` |
+| unknown (`R-HSA-99999999999`)            | 404    | the same                                                                                                                                        | `{"code":404,"reason":"NOT_FOUND",…,"messages":["Identifier 'R-HSA-99999999999' not found"],…}`                                                       |
+| a pathway whose diagram file is missing  | 500    | the same                                                                                                                                        | the service's 500 envelope                                                                                                                            |
+
+- **No fallback:** no request is passed to Java, an error included.
+- **The document** is `toSbgn` of the layout: a pathway's diagram file (the diagram that
+  holds it), or a reaction's layout from the website's own reaction-layout module.
+- **Its users, unchanged:** the pathway browser's download tab (the SBGN button and the
+  Newt link, pathways only) and the detail page's download bar (any event).
+- **Cache:** one answer per event per release may be stored, as for the website's other
+  exports; this library's output is the same on every call.
+- **Not added:** `/exporter/diagram/{id}.sbgn`, which Java does not have (it answers 500,
+  "Unsupported file extension sbgn").
