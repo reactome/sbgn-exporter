@@ -35,5 +35,5 @@
   download name, the libSBGN namespace and the bulk file's name). These are the
   readers' contract, not implementation choices, so they stay.
 - "TypeScript" appears only in the title and input, as the user's decision.
-- One default awaits the user's confirmation rather than a clarification marker: D5,
-  the production arcs' direction (Assumptions). The spec proceeds with it.
+- D4, D5 and the bulk file's species, first written as defaults, were decided by the
+  user on 6 Nov 2026 (spec Decisions).

@@ -54,7 +54,7 @@ has none).
 | D2   | points of arcs of an edge with an OUTPUT, as Java's reversal would give | R3.2                |
 | D3   | `stoichiometry` → `cardinality`                                         | R3.4                |
 | D4   | label box widths, Java's fallback font against Arial                    | R3.3                |
-| D5   | a production arc's start, next and end order                            | R3.5 (default)      |
+| D5   | a production arc's start, next and end order                            | R3.5                |
 
 ## Event (website, WebsiteAngular's)
 

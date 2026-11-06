@@ -210,8 +210,11 @@ whole bulk file of a release once, against the libSBGN schema the files declare.
     font it asks for, on every run, not whatever font the machine has;
   - **D5, output arcs' points in the arc's own direction:** a production arc's points run
     from its source (the reaction) to its target (the product). Java reverses the middle
-    points but not the start and end (research R3.5). _Default, awaiting the user's
-    confirmation (Assumptions)._
+    points but not the start and end (research R3.5). Decided by the user, 6 Nov 2026.
+
+  D4 and D5, and the bulk file's species (FR-013), were decided by the user on 6 Nov 2026
+  (see Decisions).
+
 - **FR-004**: The exporter MUST write the same bytes for the same layout on every run and
   on every machine.
 - **FR-005**: The exporter MUST write numbers, the XML declaration, attribute order,
@@ -306,21 +309,25 @@ whole bulk file of a release once, against the libSBGN schema the files declare.
 - **SC-007**: After the switch, no SBGN request reaches Java: the website's route tables
   send the address to node, and the deployed site's SBGN buttons and Newt link work.
 
-## Assumptions
+## Decisions
+
+Decided by the user on 6 Nov 2026:
 
 - **Human only, as today.** The bulk file stays `homo_sapiens.sbgn.tar.gz`, the human
   pathways with diagrams, which is what the download page offers. SBGN for other species is
   available per event on the website; a bulk file for all species would be an improvement,
   an issue for the team.
 - **D4, Arial's widths.** Java asks for Arial at 16 points and gets whatever the machine
-  has. The content service's answers measure with Arial; the release's bulk run evidently
-  did not. The exporter uses Arial's widths, as the website's content service already does
-  for reaction layouts.
-- **D5 is a default, for the user to confirm.** Today's production arcs start at the
-  product and end at the reaction while naming the reaction as their source, with their
-  middle points reversed. That reads as half of a reversal Java meant to make; this spec
-  takes it as an obvious bug and fixes it. If the user decides otherwise, D5 is dropped and
-  the exporter writes Java's points.
+  has. The content service's answers, which the website serves, measure with Arial; the
+  release's bulk run did not, and its widths are wider. The exporter matches Java's Arial
+  widths, not the bulk file's fallback widths.
+- **D5, production arcs fixed.** Today's production arcs start at the product and end at
+  the reaction while naming the reaction as their source, with their middle points
+  reversed: half of a reversal Java meant to make. The exporter writes their points from
+  the reaction to the product.
+
+## Assumptions
+
 - **The website imports the exporter** as a pinned dependency rather than calling a
   separate service (research R6): it is TypeScript, small, fast and has no Java to host.
 - **Reaction layouts come from the website.** The exporter does not lay out reactions. The

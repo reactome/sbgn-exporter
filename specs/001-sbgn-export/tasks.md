@@ -32,7 +32,7 @@ number.
 - [ ] T005 [P] Add `ci/float-check.ts`: re-derive every number in a folder of Java's SBGN files from its text (parse, `Math.fround`, `java-float`) and report any that does not come back identical; run it over release 98's bulk files, outside CI, and record the count in this task (research R4).
 - [ ] T006 [P] Add the Arial plain 16 width table: a Java program in `ci/reference/widths/` that writes each character's advance as Java 11's `FontMetrics` gives it, and how it measures a missing glyph; its output committed as `src/text-widths.json`; `src/text-width.ts` with tests in `test/text-width.test.ts` (research R5, D4).
 - [ ] T007 [P] Type and read the diagram layout in `src/layout.ts`, as data-model.md lists it, refusing a field of the wrong type with an `SbgnLayoutError` naming the object; tests in `test/layout.test.ts`.
-- [ ] T008 Port `ShapeWrapper`'s touch test, the ports' placement (`getEdgeGlyph`) and the arcs' points (`Participant.getSegments`, `getArcNextList`) in `src/geometry.ts`, reading the layout without altering it (D2), with D5's direction for production arcs behind one switch; tests in `test/geometry.test.ts`, one of them seen failing against an in-place reversal.
+- [ ] T008 Port `ShapeWrapper`'s touch test, the ports' placement (`getEdgeGlyph`) and the arcs' points (`Participant.getSegments`, `getArcNextList`) in `src/geometry.ts`, reading the layout without altering it (D2), with production arcs' points from the reaction to the product (D5); tests in `test/geometry.test.ts`, one of them seen failing against an in-place reversal.
 - [ ] T009 Port the mapping (research R2) in `src/convert.ts`: classes, ids, labels, boxes, units of information and their counter, cardinality glyphs (D3), faded and crossed objects left out, the fixed order (D1), and the refusals of an arc without points and of a repeated id; tests in `test/convert.test.ts`.
 - [ ] T010 Write the document as libSBGN 0.2 writes it (research R4) in `src/write.ts`: declaration, namespace, indentation, attribute and child order, escapes, floats through `java-float`; tests in `test/write.test.ts` on a hand-built model whose expected text is taken from a Java file.
 - [ ] T011 Export the library's contract ([contracts/library.md](contracts/library.md)) from `src/index.ts`: `toSbgn`, `sbgnFileName`, `SBGN_MEDIA_TYPE`, `SbgnLayoutError`, the layout's types; a test that importing it loads nothing from the command line's or comparison's dependencies.
@@ -98,7 +98,7 @@ number.
 ## Phase 7: Polish and cross-cutting
 
 - [ ] T028 Open GitHub issues for the team for each improvement seen and not made (constitution II, spec FR-006): classes for genes, RNA and sets; state variables for modifications; annotations and the pathway's name and id in the file; libSBGN 0.3; a bulk file for all species; and any PD rule from T021.
-- [ ] T029 Ask the user to confirm D5 (the production arcs' direction, spec Assumptions); if declined, switch D5 off, drop its kind from the comparison, and update spec FR-003.
+- [x] T029 Ask the user to decide D4, D5 and the bulk file's species. Decided by the user on 6 Nov 2026: D5, production arcs run from the reaction to the product; D4, Java's Arial widths, not the bulk file's fallback widths; the bulk file stays human only (spec Decisions). — the pull request that replaced #1
 - [ ] T030 [P] Update `README.md` and `CLAUDE.md` for the library, the command line and the comparison.
 
 ## Dependencies and order
@@ -109,7 +109,7 @@ number.
 - **US1 (T017–T018)** after T015: the website should not switch before the fixtures compare clean. T018's routing waits on WebsiteAngular's own live comparison.
 - **US4 (T019–T021)** after T013 and T010; T020 and T021 after T026.
 - **US2 (T022–T027)** after the foundation; T026 after T022–T024.
-- **Polish** last; T029 can be asked at any time and should be before T016's counts are final.
+- **Polish** last; T029 is done.
 
 ## Parallel examples
 

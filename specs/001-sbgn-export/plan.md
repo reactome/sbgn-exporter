@@ -125,7 +125,8 @@ website's import pulls in none of them.
 ## Phases
 
 - **Phase 0 (research.md):** done. Java's converter read, its instabilities measured on
-  release 98, every open question decided or given a default: D5 awaits the user.
+  release 98, every open question decided. D4, D5 and the bulk file's species were decided by the
+  user on 6 Nov 2026 (spec Decisions).
 - **Phase 1 (data-model.md, contracts/, quickstart.md):** done.
 - **Phase 2 (tasks.md):** by `/speckit-tasks`.
 
@@ -137,8 +138,6 @@ website's import pulls in none of them.
 - **The width table.** A character Java measures differently from the table changes a box
   width. Checked against every label box of the sample's content service answers; the
   table records how Java measures a missing glyph.
-- **D5 undecided.** If the user keeps today's points, D5's code is a switch off and the
-  comparison's D5 kind is removed; nothing else changes.
 - **The website's half** depends on WebsiteAngular's own spec for its endpoint; this
   repository's tasks only name it (spec FR-012).
 

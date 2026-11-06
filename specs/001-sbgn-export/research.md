@@ -88,7 +88,8 @@ same pathway in the same release.
    font metrics, which fall back to another font when Arial is not installed. The bulk
    file's widths are larger (a unit of information "P": 10 against 11; "cytosol": 56
    against 48; "nucleoplasm": 97 against 87). The content service's are Arial's.
-   **Fix (D4):** Arial's widths, always. WebsiteAngular's reaction-layout port already
+   **Fix (D4), decided by the user on 6 Nov 2026:** Java's Arial widths, as the content
+   service's answers have them, always; not the bulk file's fallback widths. WebsiteAngular's reaction-layout port already
    measures Arial from a table taken from Java (spec 006 T092, `text-widths.ts`); this
    repository takes its own table for Arial plain 16 the same way (R5).
 4. **Invalid files.** Validated with libxml2 against libSBGN 0.2's `SBGN.xsd`
@@ -100,9 +101,8 @@ same pathway in the same release.
    the connector's last, at the reaction; only the middle points are reversed. R-HSA-6805479:
    start (455, 185) at the product, next (299, 162.5), next (374, 185), end (299, 162.5). A
    reader drawing it goes from the product to the reaction, back out and in again.
-   **Default (D5), for the user to confirm:** write the points from source to target,
-   start at the reaction's side and end at the product. If the user prefers today's points,
-   D5 is dropped.
+   **Fix (D5), decided by the user on 6 Nov 2026:** write the points from source to
+   target, starting at the reaction's side and ending at the product.
 
 No other kind of difference was seen between the two files: classes, ids, labels, boxes
 and ports are identical. Release 98 has no repeated ids and no arc without points.
