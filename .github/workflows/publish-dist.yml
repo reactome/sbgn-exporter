@@ -1,0 +1,97 @@
+name: Publish the build
+
+# The website imports this package at a pinned commit of the `dist` branch (spec 001
+# T001, research R6): Node does not strip types under node_modules, so the branch holds
+# the compiled library, dist/ and a package.json with no scripts or dev dependencies,
+# and an install needs no build:
+#
+#   "sbgn-exporter": "github:reactome/sbgn-exporter#<commit of dist>"
+#
+# Each build follows the previous one, so the branch keeps a history of what was
+# published and from which commit of main. dist/ stays ignored on main.
+#
+# Runs only after CI has passed for a push to main: a build that failed its checks is
+# never published.
+on:
+    workflow_run:
+        workflows: ['sbgn-exporter ci']
+        types: [completed]
+        branches:
+            - main
+    # To publish main again without a new commit. Only from main: a run from another
+    # branch would build and publish that branch, unchecked.
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+# One publish at a time, so two never race to push the branch.
+concurrency:
+    group: publish-dist
+    cancel-in-progress: false
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        if: >-
+            (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+            (github.event.workflow_run.conclusion == 'success' &&
+             github.event.workflow_run.event == 'push')
+        steps:
+            - uses: actions/checkout@v7
+              with:
+                  # The commit that was checked, not whatever main points at now.
+                  ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+                  # No token left in .git/config while npm's install scripts and the
+                  # build run: only the push step below has it.
+                  persist-credentials: false
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: npm
+
+            - run: npm ci
+
+            - name: Build
+              run: npm run build
+
+            - name: Stage the branch's contents
+              run: |
+                  set -euo pipefail
+                  stage="$RUNNER_TEMP/dist-branch"
+                  mkdir "$stage"
+                  cp -r dist LICENSE README.md package.json "$stage/"
+                  cd "$stage"
+                  npm pkg delete scripts devDependencies
+                  cat package.json
+
+            - name: Push the build to the dist branch
+              env:
+                  SOURCE: ${{ github.event.workflow_run.head_sha || github.sha }}
+                  REMOTE: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+              run: |
+                  set -euo pipefail
+                  # Only main's current commit. CI runs finish out of order, and an older
+                  # run finishing (or re-run) later must not publish over a newer build.
+                  tip=$(git ls-remote "$REMOTE" refs/heads/main | cut -f1)
+                  if [ "$tip" != "$SOURCE" ]; then
+                      echo "$SOURCE is no longer main's tip ($tip): not publishing."
+                      exit 0
+                  fi
+                  cd "$RUNNER_TEMP/dist-branch"
+                  git init -q
+                  git config user.name 'github-actions[bot]'
+                  git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+                  if git ls-remote --exit-code "$REMOTE" refs/heads/dist >/dev/null; then
+                      git fetch -q --depth 1 "$REMOTE" dist
+                      git reset -q --soft FETCH_HEAD
+                  fi
+                  git add -A
+                  if git diff --cached --quiet && git rev-parse -q --verify HEAD >/dev/null; then
+                      echo "dist: unchanged"
+                  else
+                      git commit -q -m "Build from ${SOURCE}"
+                      git push -q "$REMOTE" HEAD:refs/heads/dist
+                      echo "dist: published from ${SOURCE}"
+                  fi
