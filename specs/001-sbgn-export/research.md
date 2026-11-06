@@ -214,9 +214,11 @@ commit, and calls it in its own process. No separate service, no network hop, no
 to deploy or monitor.
 
 - Node does not strip types from files under `node_modules`, so the package ships compiled
-  JavaScript and type declarations: `npm run build` (tsc) writes `dist/`, run by `prepare`
-  when the website installs it from git. The repository's own tests keep running the
-  TypeScript.
+  JavaScript and type declarations: `npm run build` (tsc) writes `dist/`. CI builds it on
+  each push to main and commits it to the `dist` branch, which the website installs at a
+  pinned commit with no build of its own (T001, T018): a `prepare` build would need
+  TypeScript and the dev dependencies wherever the website installs, and would not run
+  under `--ignore-scripts`. The repository's own tests keep running the TypeScript.
 - The library takes a parsed layout and returns the document as a string. Reading files,
   resolving identifiers and HTTP are the caller's.
 

@@ -1,0 +1,15 @@
+{
+  // The website's import (spec 001 T001, research R6): Node does not strip types under
+  // node_modules, so src/ is compiled to JavaScript and declarations in dist/. Relative
+  // imports name their .ts file, rewritten to .js in the output; the JSON tables are
+  // emitted beside the code.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rewriteRelativeImportExtensions": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "src/**/*.json"]
+}

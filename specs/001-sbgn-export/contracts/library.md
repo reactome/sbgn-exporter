@@ -1,7 +1,7 @@
 # Contract: the library
 
 What the website's node content service imports. The package is installed from git at a
-pinned commit; `prepare` builds `dist/` (research R6).
+pinned commit of the `dist` branch, which holds the build CI made from main (research R6).
 
 ```ts
 import { toSbgn, sbgnFileName, type DiagramLayout } from 'sbgn-exporter';

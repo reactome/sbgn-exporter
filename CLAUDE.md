@@ -43,6 +43,10 @@ Feature-sized work goes through Spec Kit before any code, and the specs live in
   `.prettierignore`). Fix with `npx prettier@3.9.10 --write .`, which a Spec Kit run
   needs afterwards: Spec Kit writes `[X]` and `*emphasis*`, which Prettier writes `[x]`
   and `_emphasis_`. Markdown can need a second pass.
+- **`build`**: `npm run build` compiles `src/` to `dist/` (`tsconfig.build.json`), the
+  form the website imports; `test/build.test.ts` builds it afresh and loads it. CI
+  publishes main's build to the `dist` branch (`publish-dist.yml`); `dist/` is never
+  committed to main.
 - **Imports name their `.ts` file:** Node runs the TypeScript as it is, so a relative
   import, export or dynamic import of `.js` passes the type check but fails at run time;
   lint refuses each.
