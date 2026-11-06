@@ -51,6 +51,23 @@ Feature-sized work goes through Spec Kit before any code, and the specs live in
   import, export or dynamic import of `.js` passes the type check but fails at run time;
   lint refuses each.
 
+## Types, as fully as possible
+
+The compiler is as strict as WebsiteAngular's (`tsconfig.json`): `strict`,
+`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`,
+`noPropertyAccessFromIndexSignature`, `noImplicitReturns`, `noUnusedLocals`,
+`noUnusedParameters`, `noImplicitOverride`. Beyond the compiler:
+
+- **Nothing on trust in `src/`.** What the library reads (a layout, a table)
+  arrives as `unknown` and is checked into its type, refusing what does not fit.
+  Lint allows no `as` there at all, and no `any` or non-null `!` anywhere.
+- **Say what is returned.** Every exported function has its return type written.
+- **Name the domain.** A glyph's class, an arc's class, an id, a float already
+  rounded to Java's: a union or branded type, not a bare string or number, where
+  it lets the compiler catch a mix-up.
+- **Scripts and tests** may assert the type of something they have just parsed,
+  but never an object literal's.
+
 ## Proving what is written
 
 - **The reference** is what Java writes today: the content service's

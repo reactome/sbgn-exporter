@@ -34,5 +34,29 @@ export default tseslint.config(
       ],
     },
   },
+  // The types used as fully as possible. The library takes no type on trust: what it
+  // reads arrives as `unknown` and is checked into its type, so `src/` has no `as` at
+  // all, and every exported function says what it returns. Scripts and tests may
+  // assert a type they have just parsed, never invent an object's type.
+  {
+    files: ['src/**/*.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'never' }],
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        { allowExpressions: true, allowTypedFunctionExpressions: true },
+      ],
+    },
+  },
+  {
+    files: ['ci/**/*.ts', 'test/**/*.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
+      ],
+    },
+  },
   { files: ['eslint.config.js'], ...tseslint.configs.disableTypeChecked }
 );
