@@ -4,8 +4,8 @@ dist/
 
 # Output and references: release files and Java's answers are fetched for comparison
 # and never committed (constitution VI)
-output/
-reference/
+/output/
+/reference/
 *.sbgn
 !fixtures/**/*.sbgn
 *.tar.gz

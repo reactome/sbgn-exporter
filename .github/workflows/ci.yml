@@ -23,6 +23,15 @@ jobs:
             - name: Formatted
               run: npx --yes prettier@3.9.10 --check .
 
+            # The Java reference harness lives in ci/reference/ and must be tracked: an
+            # unanchored `reference/` in .gitignore once ignored it (spec 001 T031).
+            - name: The reference harness is not ignored
+              run: |
+                  if git check-ignore -q ci/reference/harness; then
+                      echo "ci/reference/ is ignored by .gitignore" >&2
+                      exit 1
+                  fi
+
     # The code's gates: types, lint and the unit tests, on Node 24's own type stripping.
     check:
         runs-on: ubuntu-latest
