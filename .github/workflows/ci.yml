@@ -1,0 +1,46 @@
+name: sbgn-exporter ci
+
+on:
+    workflow_dispatch:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+
+jobs:
+    # Every file as Prettier writes it (.prettierrc).
+    format:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Formatted
+              run: npx --yes prettier@3.9.10 --check .
+
+    # The code's gates: types, lint and the unit tests, on Node 24's own type stripping.
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: npm
+
+            - run: npm ci
+
+            - name: Types
+              run: npm run typecheck
+
+            - name: Lint
+              run: npm run lint
+
+            - name: Unit tests
+              run: npm test
