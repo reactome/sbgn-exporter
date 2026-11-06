@@ -200,6 +200,14 @@ service's answers (task T033) and against a whole release measured by Java with 
 (task T032). A character outside the table is measured as Java measures a missing
 glyph, which the table also records.
 
+**Measured (T006):** Java 11's `stringWidth` (`FontDesignMetrics`) adds each UTF-16 code
+unit's advance only while every one is "simple"; a string holding a combining mark, a
+complex script's letter, a bidi or joiner control or a surrogate it lays out whole with a
+`TextLayout`, where Arabic shaping and combining marks make a width depend on its
+neighbours. The table holds the simple code units' widths and the ranges of the others,
+and the exporter refuses a label holding one of the others rather than write a width
+Java would not. None of release 98's labels has one.
+
 **Alternatives:** measuring with a font file at run time (needs the font, which is not
 under a loose licence, and its hinting differs from Java's); copying WebsiteAngular's
 table (a different size and purpose, and a dependency on another repository).
