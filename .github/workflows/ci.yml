@@ -53,3 +53,8 @@ jobs:
 
             - name: Unit tests
               run: npm test
+
+            # Every installed package, development ones included, under a loose licence
+            # (spec 001 T002, constitution VII).
+            - name: Licences
+              run: node ci/licences.ts
