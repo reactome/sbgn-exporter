@@ -353,6 +353,10 @@ site after the switch, with a pathway that has compartments and modifications (N
   `distinct-values`); libxml2's XSLT 1.0 cannot run it. They are run once over a release's
   output with libSBGN's own Java validator, outside CI, and their findings recorded; a rule
   Java's files already break is an issue for the team, not a fix here (constitution II).
+  Done (T021): `ci/reference/schematron/` runs libSBGN 0.2's pipeline with Saxon-HE, fetched
+  by hash for the run and never a dependency. Release 98, ours and the published files
+  alike: 122 failed assertions of three rules (pd10104, pd10108, pd10131), on the same
+  objects; none of ours alone.
 
 ## R12. The comparison
 
