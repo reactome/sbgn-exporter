@@ -1,0 +1,1707 @@
+{
+ "dbId": 69620,
+ "stableId": "R-HSA-69620",
+ "displayName": "Cell Cycle Checkpoints",
+ "nodes": [
+  {
+   "id": 11,
+   "reactomeId": 182585,
+   "displayName": "CDKN1A",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 2800,
+    "y": 1030
+   },
+   "minX": 2768,
+   "maxX": 2838,
+   "minY": 1011,
+   "maxY": 1043,
+   "prop": {
+    "x": 2768,
+    "y": 1017,
+    "width": 64,
+    "height": 26
+   },
+   "textPosition": {
+    "x": 2771,
+    "y": 1019
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2832,
+      "y": 1017
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2832,
+      "y": 1017
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999543,
+     "type": "OUTPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "reactomeId": 349474,
+   "displayName": "p-S15-TP53 Tetramer",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 2439,
+    "y": 700
+   },
+   "minX": 2256,
+   "maxX": 2502,
+   "minY": 460,
+   "maxY": 810,
+   "prop": {
+    "x": 2396,
+    "y": 681,
+    "width": 85,
+    "height": 38
+   },
+   "textPosition": {
+    "x": 2397,
+    "y": 684
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2481,
+      "y": 681
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2481,
+      "y": 681
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999577,
+     "type": "OUTPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 2432,
+        "y": 678
+       },
+       "to": {
+        "x": 2356,
+        "y": 460
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 2426,
+       "y": 673
+      },
+      "b": {
+       "x": 2432,
+       "y": 678
+      },
+      "c": {
+       "x": 2433,
+       "y": 670
+      },
+      "type": "ARROW",
+      "centre": {
+       "x": 2433,
+       "y": 670
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "reactomeId": 349450,
+   "displayName": "p-S387-RFWD2",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 2032,
+    "y": 400
+   },
+   "minX": 1908,
+   "maxX": 2356,
+   "minY": 381,
+   "maxY": 460,
+   "prop": {
+    "x": 1975,
+    "y": 387,
+    "width": 114,
+    "height": 26
+   },
+   "innerProp": {
+    "x": 1975,
+    "y": 393,
+    "width": 114,
+    "height": 20
+   },
+   "textPosition": {
+    "x": 1982,
+    "y": 389
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 349427,
+     "label": "P",
+     "description": "O-phospho-L-serine at 387",
+     "shape": {
+      "a": {
+       "x": 1985,
+       "y": 381
+      },
+      "b": {
+       "x": 1997,
+       "y": 393
+      },
+      "s": "P",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1991,
+       "y": 387
+      }
+     }
+    }
+   ],
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2089,
+      "y": 387
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2089,
+      "y": 387
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999577,
+     "type": "OUTPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 2092,
+        "y": 410
+       },
+       "to": {
+        "x": 2356,
+        "y": 460
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 2100,
+       "y": 407
+      },
+      "b": {
+       "x": 2092,
+       "y": 410
+      },
+      "c": {
+       "x": 2098,
+       "y": 415
+      },
+      "type": "ARROW",
+      "centre": {
+       "x": 2098,
+       "y": 415
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 539,
+   "reactomeId": 3786256,
+   "displayName": "CDKN1A gene",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Gene",
+   "position": {
+    "x": 2556,
+    "y": 891
+   },
+   "minX": 2522,
+   "maxX": 2630,
+   "minY": 863,
+   "maxY": 937,
+   "prop": {
+    "x": 2522,
+    "y": 865,
+    "width": 67,
+    "height": 51
+   },
+   "textPosition": {
+    "x": 2525,
+    "y": 892
+   },
+   "connectors": [
+    {
+     "edgeId": 9999552,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 2596,
+     "y": 863
+    },
+    "b": {
+     "x": 2589,
+     "y": 867
+    },
+    "c": {
+     "x": 2596,
+     "y": 871
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 2596,
+     "y": 871
+    }
+   }
+  },
+  {
+   "id": 30,
+   "reactomeId": 349420,
+   "displayName": "p-S387-RFWD2:p-S15-TP53",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 2485,
+    "y": 466
+   },
+   "minX": 2447,
+   "maxX": 2528,
+   "minY": 434,
+   "maxY": 491,
+   "prop": {
+    "x": 2447,
+    "y": 440,
+    "width": 75,
+    "height": 51
+   },
+   "textPosition": {
+    "x": 2451,
+    "y": 442
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2522,
+      "y": 440
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2522,
+      "y": 440
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999577,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 566,
+   "reactomeId": 5683773,
+   "displayName": "p-T68-CHEK2 dimer",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 2179,
+    "y": 239
+   },
+   "minX": 2109,
+   "maxX": 2324,
+   "minY": 189,
+   "maxY": 251,
+   "prop": {
+    "x": 2109,
+    "y": 226,
+    "width": 140,
+    "height": 25
+   },
+   "textPosition": {
+    "x": 2116,
+    "y": 230
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2249,
+      "y": 226
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2249,
+      "y": 226
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999563,
+     "type": "OUTPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 1080,
+   "reactomeId": 3209186,
+   "displayName": "PolyUb-TP53 Tetramer",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 2607,
+    "y": 1456
+   },
+   "minX": 2287,
+   "maxX": 2658,
+   "minY": 1389,
+   "maxY": 1474,
+   "prop": {
+    "x": 2562,
+    "y": 1438,
+    "width": 90,
+    "height": 36
+   },
+   "textPosition": {
+    "x": 2562,
+    "y": 1439
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2652,
+      "y": 1438
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2652,
+      "y": 1438
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999542,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 1114,
+   "reactomeId": 8856287,
+   "displayName": "PolyUb-TP53 Tetramer",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 3222,
+    "y": 1477
+   },
+   "minX": 3177,
+   "maxX": 3273,
+   "minY": 1453,
+   "maxY": 1495,
+   "prop": {
+    "x": 3177,
+    "y": 1459,
+    "width": 90,
+    "height": 36
+   },
+   "textPosition": {
+    "x": 3177,
+    "y": 1460
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 3267,
+      "y": 1459
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 3267,
+      "y": 1459
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999542,
+     "type": "OUTPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 634,
+   "reactomeId": 6803802,
+   "displayName": "p-S15,S20-TP53 Tetramer:ZNF385A:CDKN1A Gene",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 2777,
+    "y": 944
+   },
+   "minX": 2696,
+   "maxX": 2845,
+   "minY": 877,
+   "maxY": 969,
+   "prop": {
+    "x": 2714,
+    "y": 919,
+    "width": 125,
+    "height": 50
+   },
+   "textPosition": {
+    "x": 2715,
+    "y": 906
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2839,
+      "y": 919
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2839,
+      "y": 919
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999552,
+     "type": "ACTIVATOR",
+     "segments": [
+      {
+       "from": {
+        "x": 2746,
+        "y": 916
+       },
+       "to": {
+        "x": 2696,
+        "y": 877
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 2704,
+       "y": 878
+      },
+      "b": {
+       "x": 2696,
+       "y": 877
+      },
+      "c": {
+       "x": 2699,
+       "y": 884
+      },
+      "type": "ARROW",
+      "empty": true,
+      "centre": {
+       "x": 2699,
+       "y": 884
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 667,
+   "reactomeId": 6803386,
+   "displayName": "CDKN1A mRNA",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "RNA",
+   "position": {
+    "x": 3063,
+    "y": 908
+   },
+   "minX": 3019,
+   "maxX": 3106,
+   "minY": 887,
+   "maxY": 970,
+   "prop": {
+    "x": 3019,
+    "y": 887,
+    "width": 87,
+    "height": 41
+   },
+   "textPosition": {
+    "x": 3032,
+    "y": 890
+   },
+   "connectors": [
+    {
+     "edgeId": 9999543,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    },
+    {
+     "edgeId": 9999552,
+     "type": "OUTPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 670,
+   "reactomeId": 6803405,
+   "displayName": "PCBP4:CDKN1A mRNA",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 3115,
+    "y": 1063
+   },
+   "minX": 3035,
+   "maxX": 3173,
+   "minY": 1012,
+   "maxY": 1081,
+   "prop": {
+    "x": 3063,
+    "y": 1045,
+    "width": 104,
+    "height": 36
+   },
+   "textPosition": {
+    "x": 3063,
+    "y": 1046
+   },
+   "bgColor": {
+    "r": 204,
+    "g": 255,
+    "b": 255
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 3167,
+      "y": 1045
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 3167,
+      "y": 1045
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999543,
+     "type": "INHIBITOR",
+     "segments": [
+      {
+       "from": {
+        "x": 3085,
+        "y": 1042
+       },
+       "to": {
+        "x": 3037,
+        "y": 1015
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 3035,
+       "y": 1018
+      },
+      "b": {
+       "x": 3039,
+       "y": 1012
+      },
+      "c": {
+       "x": 3037,
+       "y": 1015
+      },
+      "type": "STOP",
+      "centre": {
+       "x": 3037,
+       "y": 1015
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 173,
+   "reactomeId": 113825,
+   "displayName": "p-T68-CHEK2",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 1949,
+    "y": 238
+   },
+   "minX": 1849,
+   "maxX": 2037,
+   "minY": 221,
+   "maxY": 249,
+   "prop": {
+    "x": 1899,
+    "y": 227,
+    "width": 99,
+    "height": 22
+   },
+   "innerProp": {
+    "x": 1899,
+    "y": 233,
+    "width": 99,
+    "height": 16
+   },
+   "textPosition": {
+    "x": 1905,
+    "y": 227
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 69445,
+     "label": "P",
+     "description": "O-phospho-L-threonine at 68",
+     "shape": {
+      "a": {
+       "x": 1910,
+       "y": 221
+      },
+      "b": {
+       "x": 1922,
+       "y": 233
+      },
+      "s": "P",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1916,
+       "y": 227
+      }
+     }
+    }
+   ],
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 1998,
+      "y": 227
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 1998,
+      "y": 227
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999563,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 2,
+      "shape": {
+       "a": {
+        "x": 2025,
+        "y": 233
+       },
+       "b": {
+        "x": 2037,
+        "y": 245
+       },
+       "type": "BOX",
+       "empty": true,
+       "centre": {
+        "x": 2031,
+        "y": 239
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 194,
+   "reactomeId": 156496,
+   "displayName": "p-S216-CDC25C",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 1105,
+    "y": 1470
+   },
+   "minX": 1050,
+   "maxX": 1199,
+   "minY": 1323,
+   "maxY": 1488,
+   "prop": {
+    "x": 1050,
+    "y": 1452,
+    "width": 110,
+    "height": 36
+   },
+   "innerProp": {
+    "x": 1050,
+    "y": 1458,
+    "width": 110,
+    "height": 30
+   },
+   "textPosition": {
+    "x": 1052,
+    "y": 1459
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 75806,
+     "label": "P",
+     "description": "O-phospho-L-serine at 216",
+     "shape": {
+      "a": {
+       "x": 1060,
+       "y": 1446
+      },
+      "b": {
+       "x": 1072,
+       "y": 1458
+      },
+      "s": "P",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1066,
+       "y": 1452
+      }
+     }
+    }
+   ],
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 1160,
+      "y": 1452
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 1160,
+      "y": 1452
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999567,
+     "type": "INPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 198,
+   "reactomeId": 75003,
+   "displayName": "p-S216-CDC25C",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 433,
+    "y": 724
+   },
+   "minX": 378,
+   "maxX": 494,
+   "minY": 700,
+   "maxY": 783,
+   "prop": {
+    "x": 378,
+    "y": 706,
+    "width": 110,
+    "height": 36
+   },
+   "innerProp": {
+    "x": 378,
+    "y": 712,
+    "width": 110,
+    "height": 30
+   },
+   "textPosition": {
+    "x": 380,
+    "y": 713
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 75806,
+     "label": "P",
+     "description": "O-phospho-L-serine at 216",
+     "shape": {
+      "a": {
+       "x": 388,
+       "y": 700
+      },
+      "b": {
+       "x": 400,
+       "y": 712
+      },
+      "s": "P",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 394,
+       "y": 706
+      }
+     }
+    }
+   ],
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 488,
+      "y": 706
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 488,
+      "y": 706
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 9999567,
+     "type": "OUTPUT",
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "id": 9999542,
+   "reactomeId": 6793685,
+   "displayName": "Ubiquitinated TP53 translocates to the cytosol",
+   "schemaClass": "Reaction",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 2730,
+    "y": 1470
+   },
+   "minX": 2655,
+   "maxX": 3174,
+   "minY": 1461,
+   "maxY": 1476,
+   "reactionType": "transition",
+   "segments": [
+    {
+     "from": {
+      "x": 2655,
+      "y": 1461
+     },
+     "to": {
+      "x": 2730,
+      "y": 1470
+     }
+    },
+    {
+     "from": {
+      "x": 2730,
+      "y": 1470
+     },
+     "to": {
+      "x": 3174,
+      "y": 1476
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 3167,
+     "y": 1480
+    },
+    "b": {
+     "x": 3174,
+     "y": 1476
+    },
+    "c": {
+     "x": 3167,
+     "y": 1472
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 3167,
+     "y": 1472
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 2724,
+     "y": 1464
+    },
+    "b": {
+     "x": 2736,
+     "y": 1476
+    },
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 2730,
+     "y": 1470
+    }
+   },
+   "inputs": [
+    {
+     "id": 1080
+    }
+   ],
+   "outputs": [
+    {
+     "id": 1114
+    }
+   ]
+  },
+  {
+   "id": 9999543,
+   "reactomeId": 6803411,
+   "displayName": "PCBP4 modulates CDKN1A translation",
+   "schemaClass": "BlackBoxEvent",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 3029,
+    "y": 1011
+   },
+   "minX": 2835,
+   "maxX": 3056,
+   "minY": 923,
+   "maxY": 1027,
+   "reactionType": "omitted",
+   "segments": [
+    {
+     "from": {
+      "x": 3056,
+      "y": 923
+     },
+     "to": {
+      "x": 3029,
+      "y": 1011
+     }
+    },
+    {
+     "from": {
+      "x": 3029,
+      "y": 1011
+     },
+     "to": {
+      "x": 2835,
+      "y": 1027
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 2842,
+     "y": 1022
+    },
+    "b": {
+     "x": 2835,
+     "y": 1027
+    },
+    "c": {
+     "x": 2842,
+     "y": 1030
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 2842,
+     "y": 1030
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 3023,
+     "y": 1005
+    },
+    "b": {
+     "x": 3035,
+     "y": 1017
+    },
+    "s": "\\\\",
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 3029,
+     "y": 1011
+    }
+   },
+   "inputs": [
+    {
+     "id": 667
+    }
+   ],
+   "outputs": [
+    {
+     "id": 11
+    }
+   ],
+   "inhibitors": [
+    {
+     "id": 670,
+     "points": [
+      {
+       "x": 3085,
+       "y": 1042
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 9999577,
+   "reactomeId": 264435,
+   "displayName": "Dissociation of the COP1-p53 complex",
+   "schemaClass": "Reaction",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 2405,
+    "y": 462
+   },
+   "minX": 2356,
+   "maxX": 2444,
+   "minY": 457,
+   "maxY": 467,
+   "reactionType": "dissociation",
+   "segments": [
+    {
+     "from": {
+      "x": 2444,
+      "y": 464
+     },
+     "to": {
+      "x": 2405,
+      "y": 462
+     }
+    },
+    {
+     "from": {
+      "x": 2405,
+      "y": 462
+     },
+     "to": {
+      "x": 2356,
+      "y": 460
+     }
+    }
+   ],
+   "reactionShape": {
+    "c": {
+     "x": 2405,
+     "y": 462
+    },
+    "r": 5,
+    "r1": 3,
+    "type": "DOUBLE_CIRCLE",
+    "empty": true,
+    "centre": {
+     "x": 2405,
+     "y": 462
+    }
+   },
+   "inputs": [
+    {
+     "id": 30
+    }
+   ],
+   "outputs": [
+    {
+     "id": 23,
+     "points": [
+      {
+       "x": 2432,
+       "y": 678
+      }
+     ]
+    },
+    {
+     "id": 24,
+     "points": [
+      {
+       "x": 2092,
+       "y": 410
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 9999563,
+   "reactomeId": 5683774,
+   "displayName": "p-T68-CHEK2 dimerizes",
+   "schemaClass": "Reaction",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 2062,
+    "y": 240
+   },
+   "minX": 2001,
+   "maxX": 2106,
+   "minY": 235,
+   "maxY": 245,
+   "reactionType": "binding",
+   "segments": [
+    {
+     "from": {
+      "x": 2001,
+      "y": 238
+     },
+     "to": {
+      "x": 2062,
+      "y": 240
+     }
+    },
+    {
+     "from": {
+      "x": 2062,
+      "y": 240
+     },
+     "to": {
+      "x": 2106,
+      "y": 239
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 2099,
+     "y": 243
+    },
+    "b": {
+     "x": 2106,
+     "y": 239
+    },
+    "c": {
+     "x": 2099,
+     "y": 235
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 2099,
+     "y": 235
+    }
+   },
+   "reactionShape": {
+    "c": {
+     "x": 2062,
+     "y": 240
+    },
+    "r": 5,
+    "type": "CIRCLE",
+    "centre": {
+     "x": 2062,
+     "y": 240
+    }
+   },
+   "inputs": [
+    {
+     "id": 173,
+     "stoichiometry": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": 566
+    }
+   ]
+  },
+  {
+   "id": 9999567,
+   "reactomeId": 9029987,
+   "displayName": "p-S216-CDC25C translocates to the cytosol",
+   "schemaClass": "BlackBoxEvent",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 803,
+    "y": 945
+   },
+   "minX": 463,
+   "maxX": 1102,
+   "minY": 745,
+   "maxY": 1449,
+   "reactionType": "omitted",
+   "segments": [
+    {
+     "from": {
+      "x": 1102,
+      "y": 1449
+     },
+     "to": {
+      "x": 1075,
+      "y": 1260
+     }
+    },
+    {
+     "from": {
+      "x": 1075,
+      "y": 1260
+     },
+     "to": {
+      "x": 803,
+      "y": 945
+     }
+    },
+    {
+     "from": {
+      "x": 803,
+      "y": 945
+     },
+     "to": {
+      "x": 463,
+      "y": 745
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 471,
+     "y": 745
+    },
+    "b": {
+     "x": 463,
+     "y": 745
+    },
+    "c": {
+     "x": 467,
+     "y": 752
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 467,
+     "y": 752
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 797,
+     "y": 939
+    },
+    "b": {
+     "x": 809,
+     "y": 951
+    },
+    "s": "\\\\",
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 803,
+     "y": 945
+    }
+   },
+   "inputs": [
+    {
+     "id": 194
+    }
+   ],
+   "outputs": [
+    {
+     "id": 198
+    }
+   ]
+  },
+  {
+   "id": 9999552,
+   "reactomeId": 6803388,
+   "displayName": "TP53 stimulates CDKN1A (p21) transcription",
+   "schemaClass": "BlackBoxEvent",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 2689,
+    "y": 872
+   },
+   "minX": 2598,
+   "maxX": 3016,
+   "minY": 866,
+   "maxY": 903,
+   "reactionType": "omitted",
+   "segments": [
+    {
+     "from": {
+      "x": 2598,
+      "y": 867
+     },
+     "to": {
+      "x": 2689,
+      "y": 872
+     }
+    },
+    {
+     "from": {
+      "x": 2689,
+      "y": 872
+     },
+     "to": {
+      "x": 3016,
+      "y": 903
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 3009,
+     "y": 906
+    },
+    "b": {
+     "x": 3016,
+     "y": 903
+    },
+    "c": {
+     "x": 3009,
+     "y": 898
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 3009,
+     "y": 898
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 2683,
+     "y": 866
+    },
+    "b": {
+     "x": 2695,
+     "y": 878
+    },
+    "s": "\\\\",
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 2689,
+     "y": 872
+    }
+   },
+   "inputs": [
+    {
+     "id": 539
+    }
+   ],
+   "outputs": [
+    {
+     "id": 667
+    }
+   ],
+   "activators": [
+    {
+     "id": 634,
+     "points": [
+      {
+       "x": 2746,
+       "y": 916
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "compartments": [
+  {
+   "id": 9,
+   "reactomeId": 70101,
+   "displayName": "cytosol",
+   "schemaClass": "Compartment",
+   "renderableClass": "Compartment",
+   "position": {
+    "x": 1764,
+    "y": 877
+   },
+   "minX": 0,
+   "maxX": 3528,
+   "minY": 0,
+   "maxY": 1754,
+   "prop": {
+    "x": 0,
+    "y": 0,
+    "width": 3528,
+    "height": 1754
+   },
+   "textPosition": {
+    "x": 37,
+    "y": 1428
+   },
+   "insets": {
+    "x": 10,
+    "y": 10,
+    "width": 3490,
+    "height": 1714
+   },
+   "bgColor": {
+    "r": 250,
+    "g": 240,
+    "b": 240
+   },
+   "componentIds": [
+    11,
+    23,
+    24,
+    539,
+    30,
+    566,
+    1080,
+    1114,
+    634,
+    667,
+    670,
+    173,
+    194,
+    198
+   ]
+  }
+ ],
+ "notes": [],
+ "links": [
+  {
+   "id": 9999585,
+   "renderableClass": "FlowLine",
+   "position": {
+    "x": 1285,
+    "y": 759
+   },
+   "minX": 1228,
+   "maxX": 1343,
+   "minY": 649,
+   "maxY": 870,
+   "segments": [
+    {
+     "from": {
+      "x": 1228,
+      "y": 649
+     },
+     "to": {
+      "x": 1343,
+      "y": 870
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 1336,
+     "y": 866
+    },
+    "b": {
+     "x": 1343,
+     "y": 870
+    },
+    "c": {
+     "x": 1343,
+     "y": 862
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 1343,
+     "y": 862
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 1279,
+     "y": 753
+    },
+    "b": {
+     "x": 1291,
+     "y": 765
+    },
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 1285,
+     "y": 759
+    }
+   },
+   "inputs": [
+    {
+     "id": 1683
+    }
+   ],
+   "outputs": [
+    {
+     "id": 1888
+    }
+   ]
+  }
+ ],
+ "shadows": [
+  {
+   "id": 9999592,
+   "reactomeId": 69618,
+   "displayName": "Mitotic Spindle Checkpoint",
+   "schemaClass": "Pathway",
+   "renderableClass": "Shadow",
+   "position": {
+    "x": 280,
+    "y": 336
+   },
+   "minX": 28,
+   "maxX": 532,
+   "minY": 34,
+   "maxY": 638,
+   "prop": {
+    "x": 28,
+    "y": 34,
+    "width": 504,
+    "height": 131
+   },
+   "points": [
+    {
+     "x": 28,
+     "y": 34
+    },
+    {
+     "x": 532,
+     "y": 34
+    },
+    {
+     "x": 532,
+     "y": 638
+    },
+    {
+     "x": 28,
+     "y": 638
+    }
+   ],
+   "colour": "#008000"
+  }
+ ],
+ "minX": 0,
+ "maxX": 3528,
+ "minY": 0,
+ "maxY": 1754,
+ "disease": false
+}

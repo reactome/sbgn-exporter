@@ -1,0 +1,970 @@
+{
+ "dbId": 5083635,
+ "stableId": "R-HSA-5083635",
+ "displayName": "Defective B3GALTL causes PpS",
+ "forNormalDraw": false,
+ "nodes": [
+  {
+   "id": 775,
+   "reactomeId": 5615647,
+   "displayName": "Man-DAG1",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 2496,
+    "y": 581
+   },
+   "isFadeOut": true,
+   "minX": 2459,
+   "maxX": 2542,
+   "minY": 540,
+   "maxY": 676,
+   "prop": {
+    "x": 2459,
+    "y": 570,
+    "width": 74,
+    "height": 22
+   },
+   "innerProp": {
+    "x": 2459,
+    "y": 576,
+    "width": 68,
+    "height": 16
+   },
+   "textPosition": {
+    "x": 2460,
+    "y": 570
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 9940695,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 367",
+     "shape": {
+      "a": {
+       "x": 2471,
+       "y": 562
+      },
+      "b": {
+       "x": 2488,
+       "y": 579
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 2479,
+       "y": 570
+      }
+     }
+    },
+    {
+     "reactomeId": 9941576,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 423",
+     "shape": {
+      "a": {
+       "x": 2495,
+       "y": 562
+      },
+      "b": {
+       "x": 2512,
+       "y": 579
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 2503,
+       "y": 570
+      }
+     }
+    },
+    {
+     "reactomeId": 9941577,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 481",
+     "shape": {
+      "a": {
+       "x": 2525,
+       "y": 578
+      },
+      "b": {
+       "x": 2542,
+       "y": 595
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 2533,
+       "y": 586
+      }
+     }
+    }
+   ],
+   "connectors": []
+  },
+  {
+   "id": 1303,
+   "reactomeId": 173594,
+   "displayName": "UDP-Glc",
+   "schemaClass": "SimpleEntity",
+   "renderableClass": "Chemical",
+   "position": {
+    "x": 1935,
+    "y": 260
+   },
+   "minX": 1902,
+   "maxX": 1982,
+   "minY": 244,
+   "maxY": 308,
+   "prop": {
+    "x": 1902,
+    "y": 245,
+    "width": 66,
+    "height": 30
+   },
+   "textPosition": {
+    "x": 1906,
+    "y": 249
+   },
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 1963,
+      "y": 250
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 1963,
+      "y": 250
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 10061680,
+     "type": "INPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 1949,
+        "y": 278
+       },
+       "to": {
+        "x": 1982,
+        "y": 308
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "isDisease": true
+    }
+   ]
+  },
+  {
+   "id": 1305,
+   "reactomeId": 158602,
+   "displayName": "UDP",
+   "schemaClass": "SimpleEntity",
+   "renderableClass": "Chemical",
+   "position": {
+    "x": 2074,
+    "y": 349
+   },
+   "isFadeOut": true,
+   "minX": 2017,
+   "maxX": 2091,
+   "minY": 308,
+   "maxY": 360,
+   "prop": {
+    "x": 2058,
+    "y": 338,
+    "width": 33,
+    "height": 22
+   },
+   "textPosition": {
+    "x": 2061,
+    "y": 332
+   },
+   "isCrossed": true,
+   "connectors": [
+    {
+     "edgeId": 10061680,
+     "type": "OUTPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 2058,
+        "y": 335
+       },
+       "to": {
+        "x": 2017,
+        "y": 308
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 2050,
+       "y": 335
+      },
+      "b": {
+       "x": 2058,
+       "y": 335
+      },
+      "c": {
+       "x": 2054,
+       "y": 328
+      },
+      "type": "ARROW",
+      "centre": {
+       "x": 2054,
+       "y": 328
+      }
+     },
+     "isDisease": true
+    }
+   ]
+  },
+  {
+   "id": 2088,
+   "reactomeId": 8931659,
+   "displayName": "GalNAc-GlcNAc-Man6P-DAG1",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 1790,
+    "y": 874
+   },
+   "isFadeOut": true,
+   "minX": 1737,
+   "maxX": 1892,
+   "minY": 848,
+   "maxY": 892,
+   "prop": {
+    "x": 1737,
+    "y": 856,
+    "width": 106,
+    "height": 36
+   },
+   "innerProp": {
+    "x": 1737,
+    "y": 862,
+    "width": 106,
+    "height": 30
+   },
+   "textPosition": {
+    "x": 1738,
+    "y": 856
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 8931631,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (N-acetyl-β-D-galactosaminyl-(1→3)-N-acetyl-β-D-glucosaminyl-(1→4)-6-O-phospho-α-D-mannosyl-L-threonine residue) at 367",
+     "shape": {
+      "a": {
+       "x": 1749,
+       "y": 848
+      },
+      "b": {
+       "x": 1766,
+       "y": 865
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1757,
+       "y": 856
+      }
+     }
+    },
+    {
+     "reactomeId": 9941576,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 423",
+     "shape": {
+      "a": {
+       "x": 1773,
+       "y": 848
+      },
+      "b": {
+       "x": 1790,
+       "y": 865
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1781,
+       "y": 856
+      }
+     }
+    },
+    {
+     "reactomeId": 9941577,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 481",
+     "shape": {
+      "a": {
+       "x": 1797,
+       "y": 848
+      },
+      "b": {
+       "x": 1814,
+       "y": 865
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1805,
+       "y": 856
+      }
+     }
+    }
+   ],
+   "connectors": [
+    {
+     "edgeId": 3483,
+     "type": "INPUT",
+     "isFadeOut": true,
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 3484,
+   "reactomeId": 9940750,
+   "displayName": "Core M3-DAG1",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 1551,
+    "y": 581
+   },
+   "isFadeOut": true,
+   "minX": 1505,
+   "maxX": 1598,
+   "minY": 553,
+   "maxY": 660,
+   "prop": {
+    "x": 1505,
+    "y": 561,
+    "width": 93,
+    "height": 41
+   },
+   "innerProp": {
+    "x": 1505,
+    "y": 567,
+    "width": 93,
+    "height": 35
+   },
+   "textPosition": {
+    "x": 1520,
+    "y": 564
+   },
+   "nodeAttachments": [
+    {
+     "reactomeId": 8931631,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (N-acetyl-β-D-galactosaminyl-(1→3)-N-acetyl-β-D-glucosaminyl-(1→4)-6-O-phospho-α-D-mannosyl-L-threonine residue) at 367",
+     "shape": {
+      "a": {
+       "x": 1517,
+       "y": 553
+      },
+      "b": {
+       "x": 1534,
+       "y": 570
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1525,
+       "y": 561
+      }
+     }
+    },
+    {
+     "reactomeId": 9941576,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 423",
+     "shape": {
+      "a": {
+       "x": 1541,
+       "y": 553
+      },
+      "b": {
+       "x": 1558,
+       "y": 570
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1549,
+       "y": 561
+      }
+     }
+    },
+    {
+     "reactomeId": 9941577,
+     "label": "Man",
+     "description": "O-mannosyl-L-threonine (O-(α-D-mannosyl)-L-threonine residue) at 481",
+     "shape": {
+      "a": {
+       "x": 1565,
+       "y": 553
+      },
+      "b": {
+       "x": 1582,
+       "y": 570
+      },
+      "s": "Man",
+      "type": "BOX",
+      "empty": true,
+      "centre": {
+       "x": 1573,
+       "y": 561
+      }
+     }
+    }
+   ],
+   "connectors": [
+    {
+     "edgeId": 3483,
+     "type": "OUTPUT",
+     "isFadeOut": true,
+     "segments": [],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 10061681,
+   "reactomeId": 9632239,
+   "displayName": "B3GALTL G393E",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 2002,
+    "y": 227
+   },
+   "isDisease": true,
+   "minX": 1972,
+   "maxX": 2039,
+   "minY": 210,
+   "maxY": 300,
+   "prop": {
+    "x": 1972,
+    "y": 216,
+    "width": 61,
+    "height": 22
+   },
+   "textPosition": {
+    "x": 1971,
+    "y": 210
+   },
+   "needDashedBorder": true,
+   "interactorsSummary": {
+    "type": "TR",
+    "shape": {
+     "c": {
+      "x": 2033,
+      "y": 216
+     },
+     "r": 6,
+     "type": "CIRCLE",
+     "empty": true,
+     "centre": {
+      "x": 2033,
+      "y": 216
+     }
+    }
+   },
+   "connectors": [
+    {
+     "edgeId": 10061680,
+     "type": "CATALYST",
+     "segments": [
+      {
+       "from": {
+        "x": 2002,
+        "y": 241
+       },
+       "to": {
+        "x": 2002,
+        "y": 292
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "c": {
+       "x": 2002,
+       "y": 296
+      },
+      "r": 4,
+      "type": "CIRCLE",
+      "empty": true,
+      "centre": {
+       "x": 2002,
+       "y": 296
+      }
+     },
+     "isDisease": true
+    }
+   ]
+  },
+  {
+   "id": 759,
+   "reactomeId": 5173164,
+   "displayName": "O-fuc-proteins",
+   "schemaClass": "CandidateSet",
+   "renderableClass": "EntitySet",
+   "position": {
+    "x": 1901,
+    "y": 309
+   },
+   "minX": 1837,
+   "maxX": 1982,
+   "minY": 292,
+   "maxY": 327,
+   "prop": {
+    "x": 1864,
+    "y": 292,
+    "width": 74,
+    "height": 35
+   },
+   "textPosition": {
+    "x": 1871,
+    "y": 292
+   },
+   "connectors": [
+    {
+     "edgeId": 10061680,
+     "type": "INPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 1944,
+        "y": 308
+       },
+       "to": {
+        "x": 1982,
+        "y": 308
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "isDisease": true
+    }
+   ]
+  },
+  {
+   "id": 762,
+   "reactomeId": 5173276,
+   "displayName": "glc-fuc-proteins",
+   "schemaClass": "CandidateSet",
+   "renderableClass": "EntitySet",
+   "position": {
+    "x": 2132,
+    "y": 309
+   },
+   "isFadeOut": true,
+   "minX": 2017,
+   "maxX": 2171,
+   "minY": 292,
+   "maxY": 326,
+   "prop": {
+    "x": 2093,
+    "y": 292,
+    "width": 78,
+    "height": 34
+   },
+   "textPosition": {
+    "x": 2102,
+    "y": 292
+   },
+   "isCrossed": true,
+   "connectors": [
+    {
+     "edgeId": 10061680,
+     "type": "OUTPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 2087,
+        "y": 308
+       },
+       "to": {
+        "x": 2017,
+        "y": 308
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     },
+     "endShape": {
+      "a": {
+       "x": 2080,
+       "y": 312
+      },
+      "b": {
+       "x": 2087,
+       "y": 308
+      },
+      "c": {
+       "x": 2080,
+       "y": 304
+      },
+      "type": "ARROW",
+      "centre": {
+       "x": 2080,
+       "y": 304
+      }
+     },
+     "isDisease": true
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "id": 3483,
+   "reactomeId": 9940714,
+   "displayName": "Glycosylated alpha-DAG1 localizes to Golgi",
+   "schemaClass": "BlackBoxEvent",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 1694,
+    "y": 581
+   },
+   "isFadeOut": true,
+   "minX": 1601,
+   "maxX": 1784,
+   "minY": 575,
+   "maxY": 853,
+   "reactionType": "Uncertain Process",
+   "segments": [
+    {
+     "from": {
+      "x": 1784,
+      "y": 853
+     },
+     "to": {
+      "x": 1694,
+      "y": 581
+     }
+    },
+    {
+     "from": {
+      "x": 1694,
+      "y": 581
+     },
+     "to": {
+      "x": 1601,
+      "y": 581
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 1608,
+     "y": 577
+    },
+    "b": {
+     "x": 1601,
+     "y": 581
+    },
+    "c": {
+     "x": 1608,
+     "y": 585
+    },
+    "type": "ARROW",
+    "centre": {
+     "x": 1608,
+     "y": 585
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 1688,
+     "y": 575
+    },
+    "b": {
+     "x": 1700,
+     "y": 587
+    },
+    "s": "?",
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 1694,
+     "y": 581
+    }
+   },
+   "inputs": [
+    {
+     "id": 2088
+    }
+   ],
+   "outputs": [
+    {
+     "id": 3484
+    }
+   ]
+  },
+  {
+   "id": 10061680,
+   "reactomeId": 6785565,
+   "displayName": "Defective B3GALTL does not transfer glucose to O-fucosyl-proteins",
+   "schemaClass": "FailedReaction",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 2002,
+    "y": 308
+   },
+   "isDisease": true,
+   "minX": 1982,
+   "maxX": 2017,
+   "minY": 302,
+   "maxY": 314,
+   "reactionType": "transition",
+   "segments": [
+    {
+     "from": {
+      "x": 1982,
+      "y": 308
+     },
+     "to": {
+      "x": 2002,
+      "y": 308
+     }
+    },
+    {
+     "from": {
+      "x": 2002,
+      "y": 308
+     },
+     "to": {
+      "x": 2017,
+      "y": 308
+     }
+    }
+   ],
+   "reactionShape": {
+    "a": {
+     "x": 1996,
+     "y": 302
+    },
+    "b": {
+     "x": 2008,
+     "y": 314
+    },
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 2002,
+     "y": 308
+    }
+   },
+   "inputs": [
+    {
+     "id": 1303,
+     "points": [
+      {
+       "x": 1949,
+       "y": 278
+      }
+     ]
+    },
+    {
+     "id": 759,
+     "points": [
+      {
+       "x": 1944,
+       "y": 308
+      }
+     ]
+    }
+   ],
+   "outputs": [
+    {
+     "id": 1305,
+     "points": [
+      {
+       "x": 2058,
+       "y": 335
+      }
+     ]
+    },
+    {
+     "id": 762,
+     "points": [
+      {
+       "x": 2087,
+       "y": 308
+      }
+     ]
+    }
+   ],
+   "catalysts": [
+    {
+     "id": 10061681,
+     "points": [
+      {
+       "x": 2002,
+       "y": 241
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "compartments": [
+  {
+   "id": 1,
+   "reactomeId": 17963,
+   "displayName": "Golgi lumen",
+   "schemaClass": "Compartment",
+   "renderableClass": "Compartment",
+   "position": {
+    "x": 843,
+    "y": 650
+   },
+   "minX": 60,
+   "maxX": 1626,
+   "minY": 110,
+   "maxY": 1190,
+   "prop": {
+    "x": 60,
+    "y": 110,
+    "width": 1566,
+    "height": 1080
+   },
+   "textPosition": {
+    "x": 543,
+    "y": 376
+   },
+   "insets": {
+    "x": 70,
+    "y": 118,
+    "width": 1546,
+    "height": 1062
+   },
+   "bgColor": {
+    "r": 250,
+    "g": 240,
+    "b": 240
+   },
+   "componentIds": [
+    3484
+   ]
+  }
+ ],
+ "notes": [],
+ "links": [
+  {
+   "id": 3669,
+   "renderableClass": "Interaction",
+   "position": {
+    "x": 1235,
+    "y": 597
+   },
+   "isFadeOut": true,
+   "minX": 1158,
+   "maxX": 1312,
+   "minY": 388,
+   "maxY": 806,
+   "interactionType": "Activate",
+   "segments": [
+    {
+     "from": {
+      "x": 1158,
+      "y": 806
+     },
+     "to": {
+      "x": 1312,
+      "y": 388
+     }
+    }
+   ],
+   "endShape": {
+    "a": {
+     "x": 1313,
+     "y": 396
+    },
+    "b": {
+     "x": 1312,
+     "y": 388
+    },
+    "c": {
+     "x": 1306,
+     "y": 393
+    },
+    "type": "ARROW",
+    "empty": true,
+    "centre": {
+     "x": 1306,
+     "y": 393
+    }
+   },
+   "reactionShape": {
+    "a": {
+     "x": 1229,
+     "y": 591
+    },
+    "b": {
+     "x": 1241,
+     "y": 603
+    },
+    "type": "BOX",
+    "empty": true,
+    "centre": {
+     "x": 1235,
+     "y": 597
+    }
+   },
+   "inputs": [
+    {
+     "id": 3668
+    }
+   ],
+   "outputs": [
+    {
+     "id": 1896
+    }
+   ]
+  }
+ ],
+ "shadows": [],
+ "minX": 0,
+ "maxX": 2634,
+ "minY": 0,
+ "maxY": 1331,
+ "disease": true
+}
