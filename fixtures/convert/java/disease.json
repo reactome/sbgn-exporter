@@ -1,0 +1,9 @@
+{"language":"process description",
+"glyphs":[{"class":"compartment","id":"compartmentVertex_17963_1","compartmentOrder":10.0,"label":{"text":"Golgi lumen","bbox":{"x":543.0,"y":376.0,"w":82.0,"h":24.0}},"bbox":{"x":60.0,"y":110.0,"w":1566.0,"h":1080.0},"glyphs":[],"ports":[]},
+{"class":"simple chemical","id":"entityVertex_173594_1303","label":{"text":"UDP-Glc"},"bbox":{"x":1902.0,"y":245.0,"w":66.0,"h":30.0},"glyphs":[],"ports":[]},
+{"class":"unspecified entity","id":"entityVertex_5173164_759","label":{"text":"O-fuc-proteins"},"bbox":{"x":1864.0,"y":292.0,"w":74.0,"h":35.0},"glyphs":[],"ports":[]},
+{"class":"macromolecule","id":"entityVertex_9632239_10061681","label":{"text":"B3GALTL G393E"},"bbox":{"x":1972.0,"y":216.0,"w":61.0,"h":22.0},"glyphs":[],"ports":[]},
+{"class":"process","id":"reactionVertex_6785565_10061680","label":{"text":"Defective B3GALTL does not transfer glucose to O-fucosyl-proteins"},"bbox":{"x":1996.0,"y":302.0,"w":12.0,"h":12.0},"glyphs":[],"ports":[{"id":"reactionVertex_6785565.1","x":1992.0,"y":308.0},{"id":"reactionVertex_6785565.2","x":2012.0,"y":308.0}]}],
+"arcs":[{"class":"catalysis","id":"arc_10061681_catalyst_10061680","source":"entityVertex_9632239_10061681","target":"reactionVertex_6785565_10061680","glyphs":[],"start":{"x":2002.0,"y":241.0},"next":[{"x":2002.0,"y":292.0}],"end":{"x":2002.0,"y":292.0}},
+{"class":"consumption","id":"arc_1303_input_10061680","source":"entityVertex_173594_1303","target":"reactionVertex_6785565.1","glyphs":[],"start":{"x":1949.0,"y":278.0},"next":[{"x":1982.0,"y":308.0}],"end":{"x":1982.0,"y":308.0}},
+{"class":"consumption","id":"arc_759_input_10061680","source":"entityVertex_5173164_759","target":"reactionVertex_6785565.1","glyphs":[],"start":{"x":1944.0,"y":308.0},"next":[{"x":1982.0,"y":308.0}],"end":{"x":1982.0,"y":308.0}}]}
