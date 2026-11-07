@@ -2,6 +2,9 @@
 
 `node ci/compare.ts <ours.sbgn> <java.sbgn> [--layout <layout.json>] [--bulk] [--json]`
 
+or, with two folders, their `.sbgn` files compared by name and `--layout` a folder of
+`{name}.json` (an archive is compared once extracted to a folder).
+
 - **Reads** two SBGN-ML documents and matches glyphs (with their child glyphs and ports)
   and arcs by id.
 - **Compares** class, label text, label box, box, compartment order, ports, source,
@@ -15,7 +18,8 @@
     without `--layout`. For D6 the deterministic one is exact: Java's reading with the
     backbone as given, its start replaced by the `from` of the backbone's last segment that
     touches the reaction's shape and its end by the backbone's last `to`, its next points
-    unchanged (research R3.6).
+    unchanged (research R3.6). Such a difference is D2 when Java's points are its reading of
+    the backbone reversed when the arc started, and otherwise D6 or D5, by the arc.
   - **Widths (D4):** declared only with `--bulk`, which is for the published bulk file.
     Without it, a width difference is `undeclared`.
   - **In bulk mode** everything else is still checked: the names and list of files (when
