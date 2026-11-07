@@ -214,7 +214,9 @@ Java writes through `SbgnUtil.writeToFile` (JAXB). From the files:
   return as `&#13;`, a tab and every other character as it is, and the float infinities as
   `INF` and `-INF` (seen in its own output, T010). It writes a control character XML 1.0
   cannot hold as it is too, into a file no parser reads; the writer refuses such text
-  instead (constitution IV).
+  instead (constitution IV). Release 98 has none: checked on 7 Nov 2026 over its whole
+  published bulk file, every label Java wrote from the diagram files (1,390 files, 78,527
+  labels, all valid UTF-8), not one holds such a character, so the refusal changes no file.
 
 **Decision:** a small writer of our own, no XML library: the output's shape is fixed and
 small, and an exact match needs control of every byte.

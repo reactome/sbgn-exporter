@@ -18,6 +18,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as source from '../src/index.ts';
+import { loads } from './loads.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
@@ -95,6 +96,21 @@ test('the build writes JavaScript, declarations and the JSON tables to dist/', a
     )) as typeof source;
     assert.deepEqual(Object.keys(built).sort(), Object.keys(source).sort());
     assert.equal(built.sbgnFileName('R-HSA-69620'), source.sbgnFileName('R-HSA-69620'));
+    // the whole conversion, built: Java's file for this layout (test/write.test.ts)
+    const layout = JSON.parse(
+      readFileSync(join(root, 'fixtures', 'read-layout', 'disease.json'), 'utf8')
+    ) as source.DiagramLayout;
+    assert.equal(
+      built.toSbgn(layout),
+      readFileSync(join(root, 'fixtures', 'write', 'java', 'disease.sbgn'), 'utf8')
+    );
+  });
+
+  await t.test("the built entry point loads the build's own modules only", () => {
+    const built = pathToFileURL(join(dir, 'dist')).href + '/';
+    const loaded = loads(pathToFileURL(join(dir, pkg.exports['.'].default)).href);
+    assert.ok(loaded.length > 1);
+    for (const url of loaded) assert.ok(url.startsWith(built), url);
   });
 
   await t.test('the declarations import the declarations beside them', () => {
