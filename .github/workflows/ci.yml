@@ -24,11 +24,16 @@ jobs:
               run: npx --yes prettier@3.9.10 --check .
 
             # The Java reference harness lives in ci/reference/ and must be tracked: an
-            # unanchored `reference/` in .gitignore once ignored it (spec 001 T031).
-            - name: The reference harness is not ignored
+            # unanchored `reference/` in .gitignore once ignored it (spec 001 T031), and an
+            # ignored folder's files are never committed (T012).
+            - name: The reference harness is not ignored, and is committed
               run: |
                   if git check-ignore -q ci/reference/harness; then
                       echo "ci/reference/ is ignored by .gitignore" >&2
+                      exit 1
+                  fi
+                  if [ -z "$(git ls-files ci/reference)" ]; then
+                      echo "ci/reference/ has no committed files" >&2
                       exit 1
                   fi
 

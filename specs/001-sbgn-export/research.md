@@ -372,3 +372,13 @@ file in a container (Java 11, with Arial, run with no network), and writes its a
 It can also run over a whole folder of layouts (T032). It is run by hand when a
 fixture is added, never in CI, and its answers are committed beside the fixtures. Being
 Java's, they carry Java's random order and D2's variation: the comparison expects both.
+
+Built (T012) as `ci/reference/harness/`: `Harness.java`, built into an image whose jars
+(diagram-exporter 2.0.12, diagram-reader 1.2.5, libSBGN 0.2, Jackson, JAXB 2.3.0) are
+fetched at build time from the repositories `pom.xml` names and checked against
+`jars.sha256`, and run by `run.sh` with `--network none`. Arial is not in the image: its
+licence (Microsoft's core fonts) allows only the original installer to be redistributed,
+so the host's font file is mounted read only, its SHA-256 printed with the run, and the
+harness refuses to run if Java's "Arial" is not Arial. Its modes write Java's answer as the
+content service writes it, the same in the fixed order (D1, D3), the map as sorted JSON,
+a document model through libSBGN's writer, and arc points read fresh or in order.
