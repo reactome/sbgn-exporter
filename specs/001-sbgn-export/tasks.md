@@ -80,7 +80,7 @@ number.
 
 **Independent Test**: CI validates every fixture's output; the whole release's output validates once.
 
-- [ ] T019 [US4] Validate every fixture's output in CI with `ci/validate.sh` (T003), in a `validate` job of `.github/workflows/ci.yml`; seen failing once by writing `stoichiometry` (D3 switched off).
+- [x] T019 [US4] Validate every fixture's output in CI with `ci/validate.sh` (T003), in a `validate` job of `.github/workflows/ci.yml`; seen failing once by writing `stoichiometry` (D3 switched off). `ci/fixture-output.ts` writes each layout fixture the exporter converts (`fixtures/layouts/`, `fixtures/read-layout/`, `convert/classes.json`, `geometry/ports.json`) and the hand-made model of `fixtures/write/`: 20 files, all valid (xmllint 2.9.14). With D3 switched off on a throwaway branch (run 42325204322), the three with a drawn stoichiometry failed and the job with them: 20 files, 17 valid, 3 invalid. — #23
 - [ ] T020 [US4] Validate all of a release's output with `ci/validate.sh` and record the count (SC-003: all valid). Depends on T026.
 - [ ] T021 [US4] Run libSBGN's PD rules (`sbgn_pd.sch`, XSLT 2.0) once over the release's output with libSBGN's Java validator, outside CI; record the findings in this task, and open an issue for the team for any rule Java's files already break (constitution II; research R11).
 
