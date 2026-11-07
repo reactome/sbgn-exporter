@@ -320,7 +320,11 @@ site after the switch, with a pathway that has compartments and modifications (N
 - **The list:** Java's query, `Pathway{hasDiagram:true, speciesName:$species}`, ordered by
   dbId, over Bolt with the graph's address and credentials from the environment
   (`NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`, `NEO4J_DATABASE`, as pdf-export reads
-  them), through `neo4j-driver` (Apache-2.0).
+  them), through `neo4j-driver` (Apache-2.0). It is a development dependency: the release
+  runs the command line from a checkout after `npm ci`, and the `dist` branch's
+  `package.json`, which drops development dependencies, then installs nothing of it for the
+  website (T017). The query returns each pathway's `stId` and `dbId` in place of the whole
+  node (T022).
 - **The layouts:** `{stId}.json` from a diagram folder given on the command line.
 - **The archive:** written by the command itself, as a flat ustar archive compressed with
   `node:zlib`: entries `{stId}.sbgn` at the top level, mode 0644, owner 0, in list order.
