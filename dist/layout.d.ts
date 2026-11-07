@@ -78,7 +78,13 @@ export interface DiagramObject {
     readonly reactomeId: ReactomeId;
     readonly displayName: string;
 }
-export interface Compartment extends DiagramObject {
+export interface Compartment extends Omit<DiagramObject, 'reactomeId'> {
+    /**
+     * Absent for a compartment a reaction's layout draws around the reaction's own (its
+     * parent in GO's tree, such as the nuclear envelope around the nucleoplasm), which has
+     * no database object: Java writes `null` into its glyph's id.
+     */
+    readonly reactomeId?: ReactomeId;
     readonly prop: NodeProperties;
     /** Where its name is drawn. */
     readonly textPosition: Coordinate;

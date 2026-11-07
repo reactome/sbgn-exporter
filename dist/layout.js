@@ -126,6 +126,9 @@ class Fields {
         const value = this.required(key, WHOLE);
         return typeof value === 'number' && isReactomeId(value) ? value : this.refuse(key, WHOLE);
     }
+    optionalReactomeId(key) {
+        return this.get(key) === undefined ? undefined : this.reactomeId(key);
+    }
     oneOf(key, values) {
         const expected = `one of ${values.join(', ')}`;
         const value = this.required(key, expected);
@@ -183,9 +186,16 @@ function diagramObject(item, kind, path) {
     return { fields, object: { id, reactomeId, displayName: fields.string('displayName') } };
 }
 function compartment(item, path) {
-    const { fields, object } = diagramObject(item, 'compartment', path);
+    const id = new Fields(item, 'the diagram', path).layoutId('id');
+    const named = new Fields(item, `compartment ${String(id)} (${path})`, '');
+    const reactomeId = named.optionalReactomeId('reactomeId');
+    const fields = reactomeId === undefined
+        ? named
+        : new Fields(item, `compartment ${String(id)} (reactomeId ${String(reactomeId)}, ${path})`, '');
     return {
-        ...object,
+        id,
+        ...(reactomeId === undefined ? {} : { reactomeId }),
+        displayName: fields.string('displayName'),
         prop: nodeProperties(fields.object('prop')),
         textPosition: coordinate(fields.object('textPosition')),
     };
