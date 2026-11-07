@@ -1,0 +1,9 @@
+{"language":"process description",
+"glyphs":[{"class":"compartment","id":"compartmentVertex_7660_2","compartmentOrder":10.0,"label":{"text":"nucleoplasm","bbox":{"x":564.0,"y":112.0,"w":87.0,"h":24.0}},"bbox":{"x":0.0,"y":0.0,"w":640.0,"h":145.0},"glyphs":[],"ports":[]},
+{"class":"complex","id":"entityVertex_176229_5","label":{"text":"Cdc45:CDK:DDK:Mcm10:claspin:pre-replicative complex"},"bbox":{"x":506.0,"y":42.5,"w":114.0,"h":60.0},"glyphs":[],"ports":[]},
+{"class":"macromolecule","id":"entityVertex_176282_3","label":{"text":"CLSPN"},"bbox":{"x":43.5,"y":85.0,"w":67.0,"h":40.0},"glyphs":[],"ports":[]},
+{"class":"complex","id":"entityVertex_68564_4","label":{"text":"CDK:DDK:MCM10:active pre-replicative complex:CDC45"},"bbox":{"x":20.0,"y":20.0,"w":114.0,"h":60.0},"glyphs":[],"ports":[]},
+{"class":"association","id":"reactionVertex_176318_1","label":{"text":"Loading of claspin onto DNA during replication origin firing"},"bbox":{"x":314.0,"y":66.5,"w":12.0,"h":12.0},"glyphs":[],"ports":[{"id":"reactionVertex_176318.1","x":310.0,"y":72.5},{"id":"reactionVertex_176318.2","x":330.0,"y":72.5}]}],
+"arcs":[{"class":"consumption","id":"arc_3_input_1","source":"entityVertex_176282_3","target":"reactionVertex_176318.1","glyphs":[],"start":{"x":110.5,"y":105.0},"next":[{"x":219.0,"y":105.0},{"x":294.0,"y":72.5}],"end":{"x":294.0,"y":72.5}},
+{"class":"consumption","id":"arc_4_input_1","source":"entityVertex_68564_4","target":"reactionVertex_176318.1","glyphs":[],"start":{"x":134.0,"y":50.0},"next":[{"x":219.0,"y":50.0},{"x":294.0,"y":72.5}],"end":{"x":294.0,"y":72.5}},
+{"class":"production","id":"arc_5_output_1","source":"reactionVertex_176318.2","target":"entityVertex_176229_5","glyphs":[],"start":{"x":502.0,"y":72.5},"next":[{"x":346.0,"y":72.5},{"x":421.0,"y":72.5}],"end":{"x":346.0,"y":72.5}}]}

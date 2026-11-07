@@ -24,7 +24,9 @@ a null. Any other field of the wrong type, missing or outside its values is refu
 
 - A node is written unless `isFadeOut` or `isCrossed` is present (any value, as Java tests
   for null); an edge unless `isFadeOut` is present.
-- A connector whose edge id names no edge is an error naming both ids (Java throws).
+- A written node's connector whose edge id names no edge is an error naming both ids (Java
+  throws). A left-out node's connectors are not read, as in Java, so one naming no edge is
+  no error.
 - An edge none of whose segments touches its shape is an error (Java's
   `portCandidates.get(0)` throws); so is an empty or missing backbone where Java reads it
   (an INPUT or OUTPUT without segments of its own: `subList` out of bounds, or a null
