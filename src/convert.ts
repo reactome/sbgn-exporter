@@ -96,7 +96,9 @@ const COMPARTMENT_LABEL_HEIGHT = float32(24);
 const UNIT_HEIGHT = float32(16);
 
 function compartmentGlyph(compartment: Compartment): Glyph {
-  const where = `compartment ${String(compartment.id)} (reactomeId ${String(compartment.reactomeId)})`;
+  // Java writes a missing reactomeId as `null`, as string concatenation writes a null Long.
+  const reactomeId = compartment.reactomeId === undefined ? 'null' : String(compartment.reactomeId);
+  const where = `compartment ${String(compartment.id)} (reactomeId ${reactomeId})`;
   const label: Label = {
     text: compartment.displayName,
     bbox: {
@@ -108,7 +110,7 @@ function compartmentGlyph(compartment: Compartment): Glyph {
   };
   return {
     class: 'compartment',
-    id: sbgnId(`compartmentVertex_${String(compartment.reactomeId)}_${String(compartment.id)}`),
+    id: sbgnId(`compartmentVertex_${reactomeId}_${String(compartment.id)}`),
     compartmentOrder: COMPARTMENT_ORDER,
     label,
     bbox: propBox(compartment.prop),

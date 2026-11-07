@@ -288,7 +288,7 @@ test('a left-out node, reaction or connector writes nothing, and is not read', (
 
 /** A layout file as parsed, with the fields these tests change typed. */
 interface RawLayout {
-  compartments: { displayName: string }[];
+  compartments: { displayName: string; reactomeId?: unknown }[];
   nodes: { id: number; connectors: { edgeId: number }[] }[];
   edges: { segments?: unknown }[];
 }
@@ -354,4 +354,15 @@ test('a label the width table cannot measure as Java does is refused, naming it'
   const layout = raw(FIXTURES.classes);
   at(layout.compartments, 0).displayName = 'cytosol \u{1F600}';
   refused(layout, /^Diagram layout, compartment 1 \(reactomeId 7001\): Java measures/);
+});
+
+test('a compartment without a reactomeId is written with `null` in its id, as Java writes it', () => {
+  // Java's own answer for reaction R-HSA-507937's layout (fixtures/java/
+  // reaction-outer-compartment.sbgn, the reference harness, 7 Nov 2026), and on the
+  // content service the same day: compartmentVertex_null_{id} for the nuclear envelope
+  const layout = raw(FIXTURES.classes);
+  delete at(layout.compartments, 0).reactomeId;
+  const doc = convert(readLayout(layout));
+  const [first] = doc.glyphs;
+  assert.deepEqual([first?.id, first?.label.text], ['compartmentVertex_null_1', 'cytosol']);
 });

@@ -1,6 +1,7 @@
 // The comparison's fixtures (spec 001 T013): fixtures/layouts/{name}.json, made by hand
 // (but reaction-layout.json, the content service's answer for reaction 176318, as
-// fixtures/read-layout/reaction.json), and fixtures/java/{name}.sbgn, diagram-exporter
+// fixtures/read-layout/reaction.json, and reaction-outer-compartment.json, the website's
+// node's for reaction 507937), and fixtures/java/{name}.sbgn, diagram-exporter
 // 2.0.12's answer for each from the reference harness (ci/reference/harness, mode sbgn,
 // 7 Nov 2026, with Arial and no network), in Java's own random order. The comparison of
 // the two is T015's; this checks that each pair is there, that the ids agree, and that
@@ -128,6 +129,13 @@ const exercises: Record<string, (l: DiagramLayout) => void> = {
       assert.ok(classes.has(c), c);
     }
     assert.ok(classes.has('ComplexDrug') && classes.has('Gene') && classes.has('EntitySet'));
+  },
+  // R-HSA-507937's layout as the website's reaction-layout module answers it (beta's
+  // node, 7 Nov 2026): the nuclear envelope drawn around the nucleoplasm has no
+  // database object, so no reactomeId; Java writes `null` into its id.
+  'reaction-outer-compartment': (l) => {
+    assert.ok(l.compartments.some((c) => c.reactomeId === undefined));
+    assert.ok(l.compartments.some((c) => c.reactomeId !== undefined));
   },
   'reaction-layout': (l) => {
     assert.deepEqual(l, readLayout(JSON.parse(text('read-layout/reaction.json'))));

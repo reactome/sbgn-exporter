@@ -393,3 +393,17 @@ for (const [what, layout, message] of refusals) {
     );
   });
 }
+
+test('a compartment may have no reactomeId; a node or an edge may not', () => {
+  const without = (list: string): Json => {
+    const layout = fixture('reaction');
+    const first = (layout[list] as Json[])[0] as Json;
+    delete first['reactomeId'];
+    return layout;
+  };
+  const read = readLayout(without('compartments'));
+  assert.equal(read.compartments[0]?.reactomeId, undefined);
+  assert.ok(!Object.hasOwn(read.compartments[0] ?? {}, 'reactomeId'));
+  assert.throws(() => readLayout(without('nodes')), SbgnLayoutError);
+  assert.throws(() => readLayout(without('edges')), SbgnLayoutError);
+});
