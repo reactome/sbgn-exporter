@@ -327,18 +327,19 @@ site after the switch, with a pathway that has compartments and modifications (N
   node (T022).
 - **The layouts:** `{stId}.json` from a diagram folder given on the command line.
 - **The archive:** written by the command itself, as a flat ustar archive compressed with
-  `node:zlib`: entries `{stId}.sbgn` at the top level, mode 0644, owner 0, in list order.
+  `node:zlib`: entries `{stId}.sbgn` at the top level, mode 0644, owner 0, in name order,
+  as the published archive's are (decided 7 Nov 2026).
   No tar dependency: the format's subset needed here is small, and the archive is checked
   by listing it with the system's `tar`.
 
   Release 98's published archive, read on 7 Nov 2026, differs in its headers only: GNU
   tar's format (magic `ustar  `) where ours is POSIX ustar; the build account's owner,
   group and their names where ours are 0 and empty; each file's own time, a few seconds
-  apart, where ours is one time given; and its entries in name order (a folder's sorted
-  listing), where the list's is by dbId. Its 1,390 files written by `src/tar.ts` in its
+  apart, where ours is one time given. Its entries are in name order (a folder's sorted
+  listing), and the command writes ours in the same order (T024): the list's dbId order
+  decides only which pathways are written. Its 1,390 files written by `src/tar.ts` in its
   order are listed and extracted by GNU tar 1.35 and read by Python 3.12's `tarfile` with
-  the same names, sizes, order and contents as the published archive (T023). Which order
-  the command writes, the list's or the names', is T024's to settle.
+  the same names, sizes, order and contents as the published archive (T023).
 
 - **Failures:** each pathway that fails is named on standard error, the run continues, and
   it exits 1 if any failed, as Java's does.

@@ -9,7 +9,7 @@ sbgn-exporter convert <layout.json> [--out <file.sbgn>]
 ```
 
 - **`bulk`** writes the release's archive: one `{stId}.sbgn` per
-  `Pathway{hasDiagram:true, speciesName}`, ordered by dbId, flat. The default species is
+  `Pathway{hasDiagram:true, speciesName}`, listed by dbId, flat. The default species is
   Homo sapiens, the published file's.
 - **`files`** writes the same documents into a folder: for a species, or for a list of
   pathways by stable id or dbId (each must have a diagram, as Java's list query requires).
@@ -22,6 +22,10 @@ sbgn-exporter convert <layout.json> [--out <file.sbgn>]
   failure names the pathway and the reason.
 - **Exit status:** 0 if every listed pathway was written; 1 if any failed (the archive or
   folder still holds the rest); 2 for a usage error or an unreachable graph, with nothing
-  written.
-- **The archive:** ustar, gzip; entries `{stId}.sbgn`, mode 0644, owner and group 0, in list
-  order; nothing else in it.
+  written. A pathway asked for by `--pathways` that the graph does not list with a diagram
+  is named and counted as failed. `convert` exits 1 for a layout it cannot read or
+  convert, naming the file and the reason.
+- **The archive:** ustar, gzip; entries `{stId}.sbgn`, mode 0644, owner and group 0, in name
+  order, as the published archive's are; nothing else in it. Every entry's time is
+  `SOURCE_DATE_EPOCH` (whole seconds) if set, else the time of the run, so a run with it
+  set writes the same bytes every time.

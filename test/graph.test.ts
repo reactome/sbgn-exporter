@@ -9,6 +9,9 @@ import {
   GraphAnswerError,
   graphSettings,
   GraphSettingsError,
+  LIST_QUERY,
+  pathwayIdentifier,
+  pathwayList,
   openGraph,
   type BoltDriver,
   type GraphReader,
@@ -148,4 +151,37 @@ test('a session is closed when the query fails', async () => {
   const graph = openGraph(graphSettings({ NEO4J_URI: 'bolt://localhost:7687' }), driver);
   await assert.rejects(bulkList(graph, 'Homo sapiens'), /unreachable/);
   assert.ok(closed);
+});
+
+test("the list query is diagram-exporter's for several identifiers", async () => {
+  // diagram-exporter 2.0.12, Main.java, for --target with more than one identifier:
+  //   MATCH (p:Pathway{hasDiagram:True}) WHERE p.dbId IN $dbIds OR p.stId IN $stIds
+  //   WITH DISTINCT p RETURN p ORDER BY p.dbId
+  assert.equal(
+    LIST_QUERY,
+    'MATCH (p:Pathway{hasDiagram:True}) WHERE p.dbId IN $dbIds OR p.stId IN $stIds ' +
+      'WITH DISTINCT p RETURN p.stId AS stId, p.dbId AS dbId ORDER BY p.dbId'
+  );
+  const calls: unknown[] = [];
+  const rows = [{ stId: 'R-HSA-9', dbId: 9 }];
+  const ids = ['R-HSA-9.2', '10'].flatMap((given) => pathwayIdentifier(given) ?? []);
+  assert.deepEqual(ids, [
+    { stId: 'R-HSA-9', given: 'R-HSA-9.2' },
+    { dbId: 10, given: '10' },
+  ]);
+  const list = await pathwayList(reader(rows, calls), ids);
+  assert.deepEqual(list, rows);
+  const [[query, parameters]] = calls as [
+    [string, { stIds: string[]; dbIds: { toNumber(): number }[] }],
+  ];
+  assert.equal(query, LIST_QUERY);
+  assert.deepEqual(parameters.stIds, ['R-HSA-9']);
+  // dbIds as Bolt integers, not floats
+  assert.deepEqual(
+    parameters.dbIds.map((n) => [n.constructor.name, n.toNumber()]),
+    [['Integer', 10]]
+  );
+  for (const bad of ['', 'pathway', 'R-HSA-', 'R-HSA-9.x', '1.5', 'r-hsa-9']) {
+    assert.equal(pathwayIdentifier(bad), undefined, bad);
+  }
 });
