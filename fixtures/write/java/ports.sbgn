@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph class="macromolecule" id="entityVertex_9008_101">
+            <label text="entity 101"/>
+            <bbox w="60.0" h="20.0" x="0.0" y="0.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9001_1">
+            <label text="reaction 1"/>
+            <bbox w="12.530029" h="12.0" x="2903.01" y="100.0"/>
+            <port id="reactionVertex_9001.1" x="2898.8333" y="106.0"/>
+            <port id="reactionVertex_9001.2" x="2919.7168" y="106.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9002_2">
+            <label text="reaction 2"/>
+            <bbox w="12.0" h="23.23999" x="500.0" y="3129.05"/>
+            <port id="reactionVertex_9002.1" x="506.0" y="3160.0366"/>
+            <port id="reactionVertex_9002.2" x="506.0" y="3121.3035"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9003_3">
+            <label text="reaction 3"/>
+            <bbox w="5.950012" h="10.0" x="336.03" y="50.0"/>
+            <port id="reactionVertex_9003.1" x="339.005" y="55.0"/>
+            <port id="reactionVertex_9003.2" x="339.005" y="55.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9004_4">
+            <label text="reaction 4"/>
+            <bbox w="19.580017" h="10.0" x="652.62" y="10.0"/>
+            <port id="reactionVertex_9004.1" x="662.41" y="15.0"/>
+            <port id="reactionVertex_9004.2" x="662.41" y="15.0"/>
+        </glyph>
+        <glyph class="association" id="reactionVertex_9005_5">
+            <label text="reaction 5"/>
+            <bbox w="11.7" h="11.7" x="1423.8201" y="294.15"/>
+            <port id="reactionVertex_9005.1" x="1429.67" y="300.0"/>
+            <port id="reactionVertex_9005.2" x="1429.67" y="300.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9006_6">
+            <label text="reaction 6"/>
+            <bbox w="20.3" h="10.0" x="0.0" y="0.0"/>
+            <port id="reactionVertex_9006.1" x="-6.7666664" y="5.0"/>
+            <port id="reactionVertex_9006.2" x="27.066666" y="5.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_9007_7">
+            <label text="reaction 7"/>
+            <bbox w="20.0" h="10.0" x="-10.5" y="-4.5"/>
+            <port id="reactionVertex_9007.1" x="-17.166666" y="2.0"/>
+            <port id="reactionVertex_9007.2" x="16.166666" y="4.0"/>
+        </glyph>
+        <arc class="consumption" id="arc_101_input_7" source="entityVertex_9008_101" target="reactionVertex_9007.1">
+            <start x="-30.0" y="1.0"/>
+            <next x="-10.7" y="2.0"/>
+            <end x="-10.7" y="2.0"/>
+        </arc>
+    </map>
+</sbgn>

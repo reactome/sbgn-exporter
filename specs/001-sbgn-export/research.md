@@ -41,23 +41,23 @@ A pathway that fails is logged and the run exits 1. The files are archived flat 
 
 ## R2. The mapping
 
-| Layout object                                               | SBGN-ML                                                                                                                                                                                |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Compartment                                                 | glyph `compartment`, id `compartmentVertex_{reactomeId}_{id}`, `compartmentOrder="10.0"`, label with a box at `textPosition` (width measured, height 24), bbox                         |
-| Node, `renderableClass` starting `Complex`                  | glyph `complex`                                                                                                                                                                        |
-| … `Protein`                                                 | `macromolecule`                                                                                                                                                                        |
-| … `Chemical`                                                | `simple chemical`                                                                                                                                                                      |
-| … `Process`, `EncapsulatedNode`                             | `submap`                                                                                                                                                                               |
-| anything else (sets, genes, RNA, other entities)            | `unspecified entity`                                                                                                                                                                   |
-| Node id                                                     | `entityVertex_{reactomeId}_{id}`, label `displayName` with no box, bbox from `prop`                                                                                                    |
-| Node attachment                                             | child glyph `unit of information`, id `entityVertex_{reactomeId}_{n}_mt` (n counts across the document from 1), label (`mt:prot` if none), box at `shape.a`, width measured, height 16 |
-| Edge                                                        | glyph `process`; `association` for a CIRCLE shape, `dissociation` for DOUBLE_CIRCLE; `omitted process` if the shape has text, `uncertain process` if it is `?`                         |
-| Edge id and ports                                           | `reactionVertex_{reactomeId}_{id}`; ports `reactionVertex_{reactomeId}.1` and `.2`, placed by the rule in `getEdgeGlyph`                                                               |
-| Connector INPUT / OUTPUT / CATALYST / INHIBITOR / ACTIVATOR | arc `consumption` (node → port 1) / `production` (port 2 → node) / `catalysis` / `inhibition` / `stimulation` (node → process glyph)                                                   |
-| Arc id                                                      | `arc_{node id}_{type lower case}_{edge id}`                                                                                                                                            |
-| Connector stoichiometry with a shape                        | child glyph of the arc, id `Stoichiometry_{node reactomeId}_{TYPE}_{edge reactomeId}`, label the value                                                                                 |
-| Faded-out or crossed-out node, faded-out edge               | left out, with their arcs (a present `false` counts as present: Java tests for null)                                                                                                   |
-| Links, shadows, notes, the diagram's name and id            | not written                                                                                                                                                                            |
+| Layout object                                               | SBGN-ML                                                                                                                                                                                                   |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Compartment                                                 | glyph `compartment`, id `compartmentVertex_{reactomeId}_{id}`, `compartmentOrder="10.0"`, label with a box at `textPosition` (width measured, height 24), bbox                                            |
+| Node, `renderableClass` starting `Complex`                  | glyph `complex`                                                                                                                                                                                           |
+| … `Protein`                                                 | `macromolecule`                                                                                                                                                                                           |
+| … `Chemical`                                                | `simple chemical`                                                                                                                                                                                         |
+| … `Process`, `EncapsulatedNode`                             | `submap`                                                                                                                                                                                                  |
+| anything else (sets, genes, RNA, other entities)            | `unspecified entity`                                                                                                                                                                                      |
+| Node id                                                     | `entityVertex_{reactomeId}_{id}`, label `displayName` with no box, bbox from `prop`                                                                                                                       |
+| Node attachment                                             | child glyph `unit of information`, id `entityVertex_{reactomeId}_{n}_mt` (n counts across the document from 1), label (`mt:prot` if none), box at `shape.a`, width measured, height 16                    |
+| Edge                                                        | glyph `process`; `association` for a CIRCLE shape, `dissociation` for DOUBLE_CIRCLE; `omitted process` if the shape's text is not empty (an empty text gives `process`), `uncertain process` if it is `?` |
+| Edge id and ports                                           | `reactionVertex_{reactomeId}_{id}`; ports `reactionVertex_{reactomeId}.1` and `.2`, placed by the rule in `getEdgeGlyph`                                                                                  |
+| Connector INPUT / OUTPUT / CATALYST / INHIBITOR / ACTIVATOR | arc `consumption` (node → port 1) / `production` (port 2 → node) / `catalysis` / `inhibition` / `stimulation` (node → process glyph)                                                                      |
+| Arc id                                                      | `arc_{node id}_{type lower case}_{edge id}`                                                                                                                                                               |
+| Connector stoichiometry with a shape                        | child glyph of the arc, id `Stoichiometry_{node reactomeId}_{TYPE}_{edge reactomeId}`, label the value                                                                                                    |
+| Faded-out or crossed-out node, faded-out edge               | left out, with their arcs (a present `false` counts as present: Java tests for null)                                                                                                                      |
+| Links, shadows, notes, the diagram's name and id            | not written                                                                                                                                                                                               |
 
 Release 98's bulk files hold 14,880 simple chemicals, 14,738 complexes, 10,078
 macromolecules, 7,914 unspecified entities, 7,583 processes, 6,085 associations, 4,798
@@ -209,7 +209,12 @@ Java writes through `SbgnUtil.writeToFile` (JAXB). From the files:
   `Float.toString` is not always the shortest form; the port follows JDK 11's algorithm
   and is checked against every number in a release's bulk file (FR-005).
 - Escapes in attribute values: `&amp;`, `&lt;`, `&gt;`, `&quot;` (release 98: 11, 76, 481
-  and 18). Names outside ASCII (139 labels) are written as UTF-8.
+  and 18). Names outside ASCII (139 labels) are written as UTF-8. JAXB 2.3, which libSBGN's
+  `SbgnUtil.writeToFile` marshals with, also writes a line feed as `&#10;` and a carriage
+  return as `&#13;`, a tab and every other character as it is, and the float infinities as
+  `INF` and `-INF` (seen in its own output, T010). It writes a control character XML 1.0
+  cannot hold as it is too, into a file no parser reads; the writer refuses such text
+  instead (constitution IV).
 
 **Decision:** a small writer of our own, no XML library: the output's shape is fixed and
 small, and an exact match needs control of every byte.

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph class="compartment" id="compartmentVertex_1_1" compartmentOrder="10.0">
+            <label text="cytosol">
+                <bbox w="48.0" h="24.0" x="228.5" y="570.25"/>
+            </label>
+            <bbox w="1234.5677" h="600.25" x="0.0" y="0.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_2_2">
+            <label text="a&amp;b&lt;c&gt;d&quot;e'f	g"/>
+            <bbox w="0.0" h="0.001" x="-12.5" y="-0.0"/>
+            <glyph class="unit of information" id="entityVertex_3_1_mt">
+                <label text="mt:prot"/>
+                <bbox w="16.0" h="16.0" x="9999999.0" y="1.0E7"/>
+            </glyph>
+        </glyph>
+        <glyph class="complex" id="entityVertex_4_4">
+            <label text="two&#10;lines&#13;&#10;here"/>
+            <bbox w="3.0000001E10" h="1.23456792E8" x="1.0E-5" y="1.4E-45"/>
+        </glyph>
+        <glyph class="simple chemical" id="entityVertex_5_5">
+            <label text="é α 中 😀"/>
+            <bbox w="3.4028235E38" h="1.17549435E-38" x="INF" y="-INF"/>
+        </glyph>
+        <glyph class="unspecified entity" id="entityVertex_6_6">
+            <label text=""/>
+            <bbox w="3.0" h="4.0" x="1.0" y="2.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_7_7">
+            <label text="reaction"/>
+            <bbox w="12.0" h="12.0" x="100.0" y="100.0"/>
+            <port id="reactionVertex_7.1" x="96.0" y="106.0"/>
+            <port id="reactionVertex_7.2" x="116.0" y="106.0"/>
+        </glyph>
+        <arc class="consumption" id="arc_2_input_7" source="entityVertex_2_2" target="reactionVertex_7.1">
+            <glyph class="cardinality" id="Stoichiometry_2_INPUT_7">
+                <label text="2"/>
+                <bbox w="5.950012" h="10.099998" x="336.03" y="50.0"/>
+            </glyph>
+            <start x="50.0" y="60.0"/>
+            <next x="70.5" y="106.0"/>
+            <next x="80.25" y="106.0"/>
+            <end x="96.0" y="106.0"/>
+        </arc>
+        <arc class="production" id="arc_4_output_7" source="reactionVertex_7.2" target="entityVertex_4_4">
+            <start x="116.0" y="106.0"/>
+            <end x="150.0" y="106.0"/>
+        </arc>
+        <arc class="catalysis" id="arc_5_catalyst_7" source="entityVertex_5_5" target="reactionVertex_7_7">
+            <start x="106.0" y="50.0"/>
+            <end x="106.0" y="100.0"/>
+        </arc>
+    </map>
+</sbgn>
