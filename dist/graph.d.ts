@@ -49,6 +49,26 @@ export declare class GraphAnswerError extends Error {
  *   listed twice.
  */
 export declare function bulkList(graph: GraphReader, speciesName: string): Promise<BulkPathway[]>;
+/**
+ * diagram-exporter's query for a list of pathways (`--target` with more than one
+ * identifier, Main.java), returning each pathway's stable id and dbId in place of the node.
+ */
+export declare const LIST_QUERY: string;
+/** A pathway's identifier as given: a stable id (its version dropped) or a dbId. */
+export type PathwayIdentifier = {
+    readonly stId: string;
+    readonly given: string;
+} | {
+    readonly dbId: number;
+    readonly given: string;
+};
+/** An identifier read as Java reads one, or undefined for one that is neither form. */
+export declare function pathwayIdentifier(given: string): PathwayIdentifier | undefined;
+/**
+ * The pathways with a diagram among those identified, ordered by dbId, as diagram-exporter
+ * lists them; an identifier that names none of them is left out, as Java leaves it out.
+ */
+export declare function pathwayList(graph: GraphReader, identifiers: readonly PathwayIdentifier[]): Promise<BulkPathway[]>;
 /** What this module uses of a `neo4j-driver` session's transaction. */
 export interface BoltTransaction {
     run(query: string, parameters: Readonly<Record<string, unknown>>): PromiseLike<{

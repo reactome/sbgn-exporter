@@ -58,7 +58,9 @@ function pathway(row, index) {
  *   listed twice.
  */
 export async function bulkList(graph, speciesName) {
-    const rows = await graph.read(BULK_QUERY, { speciesName });
+    return checked(await graph.read(BULK_QUERY, { speciesName }));
+}
+function checked(rows) {
     const list = rows.map(pathway);
     const seen = new Set();
     for (const { stId } of list) {
@@ -67,6 +69,39 @@ export async function bulkList(graph, speciesName) {
         seen.add(stId);
     }
     return list;
+}
+/**
+ * diagram-exporter's query for a list of pathways (`--target` with more than one
+ * identifier, Main.java), returning each pathway's stable id and dbId in place of the node.
+ */
+export const LIST_QUERY = 'MATCH (p:Pathway{hasDiagram:True}) ' +
+    'WHERE p.dbId IN $dbIds OR p.stId IN $stIds ' +
+    'WITH DISTINCT p ' +
+    'RETURN p.stId AS stId, p.dbId AS dbId ' +
+    'ORDER BY p.dbId';
+/** An identifier read as Java reads one, or undefined for one that is neither form. */
+export function pathwayIdentifier(given) {
+    const stable = /^(R-[A-Z]{3,4}-\d+)(?:\.\d+)?$/.exec(given);
+    if (stable?.[1] !== undefined)
+        return { stId: stable[1], given };
+    if (/^\d+$/.test(given)) {
+        const dbId = Number(given);
+        if (Number.isSafeInteger(dbId))
+            return { dbId, given };
+    }
+    return undefined;
+}
+/**
+ * The pathways with a diagram among those identified, ordered by dbId, as diagram-exporter
+ * lists them; an identifier that names none of them is left out, as Java leaves it out.
+ */
+export async function pathwayList(graph, identifiers) {
+    const stIds = identifiers.flatMap((id) => ('stId' in id ? [id.stId] : []));
+    // As Bolt integers: a JavaScript number goes as a float, which an index on dbId,
+    // an integer, may not be used for.
+    const dbIds = identifiers.flatMap((id) => ('dbId' in id ? [neo4j.int(id.dbId)] : []));
+    const rows = await graph.read(LIST_QUERY, { dbIds, stIds });
+    return checked(rows);
 }
 /** neo4j-driver's driver for the settings: basic auth, integers as numbers. */
 function connect(settings) {
