@@ -33,4 +33,77 @@ import { toSbgn, sbgnFileName, SBGN_MEDIA_TYPE, SbgnLayoutError } from 'sbgn-exp
 const sbgn = toSbgn(layout); // a diagram layout, parsed from JSON
 ```
 
+`toSbgn` reads the layout it is given (a release's `diagram/{stId}.json`, or a
+reaction's layout as the website's content service answers it), checks it, and returns the
+whole document as text, the same for the same layout every time. A layout it cannot
+convert is refused with an `SbgnLayoutError` naming the object. The library loads none of
+the command line's or the comparison's dependencies.
+
+## The release's bulk file
+
+This command writes `homo_sapiens.sbgn.tar.gz`, in place of diagram-exporter's SBGN step
+(`--format sbgn --target "Homo sapiens"`). It runs from a checkout on Node 24:
+
+```sh
+npm ci
+# with NEO4J_URI and the graph's other settings (below) in the environment
+SOURCE_DATE_EPOCH=<seconds> node src/cli.ts bulk --diagrams <diagram folder> --out homo_sapiens.sbgn.tar.gz
+```
+
+**Inputs**
+
+- **The release's graph,** read only, for the list of pathways: every
+  `Pathway{hasDiagram: true}` of the species (Homo sapiens unless `--species` names
+  another), ordered by dbId, as diagram-exporter lists them. Its address and credentials
+  come from the environment: `NEO4J_URI`, `NEO4J_USER` (default `neo4j`),
+  `NEO4J_PASSWORD`, `NEO4J_DATABASE` (default `graph.db`).
+- **The release's diagram files,** `{stId}.json`, in a local folder: the release's
+  `diagram/` folder. Nothing is fetched.
+- **`SOURCE_DATE_EPOCH`,** optional: the archive's file time, in whole seconds. Set, the
+  same release gives the same archive, byte for byte; unset, the time of the run.
+
+**Output**
+
+- `homo_sapiens.sbgn.tar.gz`: one `{stId}.sbgn` per listed pathway, flat, in name order,
+  as the published file is; ustar, mode 0644, gzip. Each file is SBGN-ML 0.2, valid
+  against libSBGN 0.2's schema.
+- On standard error, each pathway that could not be written with its reason, progress
+  every 100 pathways, and `N written, M failed`.
+- **Exit status:** 0 if every pathway was written; 1 if any failed (the archive holds the
+  rest, as Java's run did); 2 for a usage error or a graph that cannot be read, with
+  nothing written.
+
+For release 98 the command wrote the published file's 1,390 names, in its order, in about
+12 seconds, and every file compares with Java's with only the declared differences (spec
+001, T016, T020, T026).
+
+**Other commands**
+
+```sh
+# the same documents into a folder: for a species, or for pathways by stable id or dbId
+node src/cli.ts files --diagrams <diagram folder> --out <folder> --species "Homo sapiens"
+node src/cli.ts files --diagrams <diagram folder> --out <folder> --pathways R-HSA-69620,109581
+# one layout file, without the graph
+node src/cli.ts convert <layout.json> [--out <file.sbgn>]
+```
+
+## How it is proved
+
+What this exporter writes is Java's but for the declared differences (spec 001, FR-003:
+a fixed order, arcs read from the layout as given, `cardinality`, Arial's widths, and
+product arcs that run from the reaction to the product). The tools, from a checkout:
+
+- `node ci/compare.ts <ours> <java> [--layout <layout>] [--bulk] [--json]` compares two
+  files, or two folders, glyph by glyph and arc by arc, by id, and gives each difference a
+  kind; it fails on any it cannot explain ([contract](specs/001-sbgn-export/contracts/comparison.md)).
+- `ci/validate.sh <folder>` validates every file against libSBGN 0.2's schema with
+  xmllint; CI runs it over every fixture's output.
+- `node ci/float-check.ts <folder>` re-derives every number of Java's files from its text.
+- `ci/reference/harness/` runs Java's own converter (diagram-exporter 2.0.12, Java 11,
+  no network) on a layout or a folder of them, for the fixtures' Java answers;
+  `ci/reference/schematron/` runs libSBGN's Process Description rules. Both are run by
+  hand, never in CI.
+
+`npm run check` runs types, lint, formatting and the tests, as CI does.
+
 Licensed under the Apache License 2.0 ([`LICENSE`](LICENSE)).
