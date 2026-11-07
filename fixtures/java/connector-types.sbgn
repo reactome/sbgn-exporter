@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph class="process" id="reactionVertex_1006_1">
+            <label text="reaction 1"/>
+            <bbox w="12.0" h="12.0" x="294.0" y="294.0"/>
+            <port id="reactionVertex_1006.1" x="290.0" y="300.0"/>
+            <port id="reactionVertex_1006.2" x="310.0" y="300.0"/>
+        </glyph>
+        <glyph class="simple chemical" id="entityVertex_1004_14">
+            <label text="entity 14"/>
+            <bbox w="60.0" h="20.0" x="200.0" y="120.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1001_11">
+            <label text="entity 11"/>
+            <bbox w="60.0" h="20.0" x="180.0" y="290.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1005_15">
+            <label text="entity 15"/>
+            <bbox w="60.0" h="20.0" x="360.0" y="120.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1002_12">
+            <label text="entity 12"/>
+            <bbox w="60.0" h="20.0" x="360.0" y="290.0"/>
+        </glyph>
+        <glyph class="complex" id="entityVertex_1003_13">
+            <label text="entity 13"/>
+            <bbox w="60.0" h="20.0" x="270.0" y="120.0"/>
+        </glyph>
+        <arc class="catalysis" id="arc_13_catalyst_1" source="entityVertex_1003_13" target="reactionVertex_1006_1">
+            <start x="300.0" y="200.0"/>
+            <end x="300.0" y="294.0"/>
+        </arc>
+        <arc class="consumption" id="arc_11_input_1" source="entityVertex_1001_11" target="reactionVertex_1006.1">
+            <start x="240.0" y="300.0"/>
+            <end x="294.0" y="300.0"/>
+        </arc>
+        <arc class="inhibition" id="arc_14_inhibitor_1" source="entityVertex_1004_14" target="reactionVertex_1006_1">
+            <start x="230.0" y="140.0"/>
+            <end x="296.0" y="294.0"/>
+        </arc>
+        <arc class="stimulation" id="arc_15_activator_1" source="entityVertex_1005_15" target="reactionVertex_1006_1">
+            <start x="380.0" y="140.0"/>
+            <end x="304.0" y="294.0"/>
+        </arc>
+        <arc class="production" id="arc_12_output_1" source="reactionVertex_1006.2" target="entityVertex_1002_12">
+            <start x="306.0" y="300.0"/>
+            <end x="294.0" y="300.0"/>
+        </arc>
+    </map>
+</sbgn>

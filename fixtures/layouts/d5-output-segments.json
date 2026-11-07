@@ -1,0 +1,110 @@
+{
+  "stableId": "R-HSA-0",
+  "compartments": [],
+  "nodes": [
+    {
+      "id": 11,
+      "reactomeId": 1001,
+      "displayName": "entity 11",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 180,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "reactomeId": 1002,
+      "displayName": "entity 12",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 460,
+        "y": 400,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 470,
+                "y": 400
+              },
+              "to": {
+                "x": 400,
+                "y": 330
+              }
+            },
+            {
+              "from": {
+                "x": 400,
+                "y": 330
+              },
+              "to": {
+                "x": 306,
+                "y": 300
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "reactomeId": 1003,
+      "displayName": "reaction 1",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 294,
+          "y": 294
+        },
+        "b": {
+          "x": 306,
+          "y": 306
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 240,
+            "y": 300
+          },
+          "to": {
+            "x": 294,
+            "y": 300
+          }
+        },
+        {
+          "from": {
+            "x": 306,
+            "y": 300
+          },
+          "to": {
+            "x": 360,
+            "y": 300
+          }
+        }
+      ]
+    }
+  ]
+}

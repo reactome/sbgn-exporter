@@ -1,0 +1,281 @@
+{
+ "isDisease": false,
+ "displayName": "Loading of claspin onto DNA during replication origin firing",
+ "nodes": [
+  {
+   "id": 3,
+   "reactomeId": 176282,
+   "displayName": "CLSPN",
+   "schemaClass": "EntityWithAccessionedSequence",
+   "renderableClass": "Protein",
+   "position": {
+    "x": 77,
+    "y": 105
+   },
+   "minX": 43.5,
+   "minY": 85,
+   "maxX": 110.5,
+   "maxY": 125,
+   "prop": {
+    "x": 43.5,
+    "y": 85,
+    "width": 67,
+    "height": 40
+   },
+   "connectors": [
+    {
+     "edgeId": 1,
+     "type": "INPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 110.5,
+        "y": 105
+       },
+       "to": {
+        "x": 219,
+        "y": 105
+       }
+      },
+      {
+       "from": {
+        "x": 219,
+        "y": 105
+       },
+       "to": {
+        "x": 294,
+        "y": 72.5
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "reactomeId": 68564,
+   "displayName": "CDK:DDK:MCM10:active pre-replicative complex:CDC45",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 77,
+    "y": 50
+   },
+   "minX": 20,
+   "minY": 20,
+   "maxX": 134,
+   "maxY": 80,
+   "prop": {
+    "x": 20,
+    "y": 20,
+    "width": 114,
+    "height": 60
+   },
+   "connectors": [
+    {
+     "edgeId": 1,
+     "type": "INPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 134,
+        "y": 50
+       },
+       "to": {
+        "x": 219,
+        "y": 50
+       }
+      },
+      {
+       "from": {
+        "x": 219,
+        "y": 50
+       },
+       "to": {
+        "x": 294,
+        "y": 72.5
+       }
+      }
+     ],
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "reactomeId": 176229,
+   "displayName": "Cdc45:CDK:DDK:Mcm10:claspin:pre-replicative complex",
+   "schemaClass": "Complex",
+   "renderableClass": "Complex",
+   "position": {
+    "x": 563,
+    "y": 72.5
+   },
+   "minX": 506,
+   "minY": 42.5,
+   "maxX": 620,
+   "maxY": 102.5,
+   "prop": {
+    "x": 506,
+    "y": 42.5,
+    "width": 114,
+    "height": 60
+   },
+   "connectors": [
+    {
+     "edgeId": 1,
+     "type": "OUTPUT",
+     "segments": [
+      {
+       "from": {
+        "x": 502,
+        "y": 72.5
+       },
+       "to": {
+        "x": 421,
+        "y": 72.5
+       }
+      },
+      {
+       "from": {
+        "x": 421,
+        "y": 72.5
+       },
+       "to": {
+        "x": 346,
+        "y": 72.5
+       }
+      }
+     ],
+     "endShape": {
+      "a": {
+       "x": 495.0717967697245,
+       "y": 76.5
+      },
+      "b": {
+       "x": 502,
+       "y": 72.5
+      },
+      "c": {
+       "x": 495.0717967697245,
+       "y": 68.5
+      },
+      "type": "ARROW",
+      "empty": false
+     },
+     "stoichiometry": {
+      "value": 1
+     }
+    }
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "id": 1,
+   "reactomeId": 176318,
+   "displayName": "Loading of claspin onto DNA during replication origin firing",
+   "schemaClass": "Reaction",
+   "renderableClass": "Reaction",
+   "position": {
+    "x": 320,
+    "y": 72.5
+   },
+   "isDisease": false,
+   "minX": 314,
+   "minY": 66.5,
+   "maxX": 326,
+   "maxY": 78.5,
+   "segments": [
+    {
+     "from": {
+      "x": 314,
+      "y": 72.5
+     },
+     "to": {
+      "x": 294,
+      "y": 72.5
+     }
+    },
+    {
+     "from": {
+      "x": 326,
+      "y": 72.5
+     },
+     "to": {
+      "x": 346,
+      "y": 72.5
+     }
+    }
+   ],
+   "reactionShape": {
+    "c": {
+     "x": 320,
+     "y": 72.5
+    },
+    "r": 6,
+    "type": "CIRCLE"
+   },
+   "inputs": [
+    {
+     "id": 3,
+     "stoichiometry": 1
+    },
+    {
+     "id": 4,
+     "stoichiometry": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": 5,
+     "stoichiometry": 1
+    }
+   ]
+  }
+ ],
+ "compartments": [
+  {
+   "id": 2,
+   "reactomeId": 7660,
+   "displayName": "nucleoplasm",
+   "schemaClass": "Compartment",
+   "renderableClass": "Compartment",
+   "position": {
+    "x": 320,
+    "y": 72.5
+   },
+   "minX": 0,
+   "minY": 0,
+   "maxX": 640,
+   "maxY": 145,
+   "prop": {
+    "x": 0,
+    "y": 0,
+    "width": 640,
+    "height": 145
+   },
+   "textPosition": {
+    "x": 564,
+    "y": 112
+   },
+   "componentIds": [
+    1,
+    3,
+    4,
+    5
+   ]
+  }
+ ],
+ "dbId": 176318,
+ "stableId": "R-HSA-69620",
+ "minX": 0,
+ "maxX": 640,
+ "minY": 0,
+ "maxY": 145
+}

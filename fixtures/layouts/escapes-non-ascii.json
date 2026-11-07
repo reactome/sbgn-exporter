@@ -1,0 +1,120 @@
+{
+  "stableId": "R-HSA-0",
+  "compartments": [
+    {
+      "id": 1,
+      "reactomeId": 1001,
+      "displayName": "café & tea <α>",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 400
+      },
+      "textPosition": {
+        "x": 10,
+        "y": 370
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": 11,
+      "reactomeId": 1002,
+      "displayName": "a \"quoted\" <name> & more",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 180,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "reactomeId": 1003,
+      "displayName": "β-catenin, Ψ, 中文",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 360,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ],
+      "nodeAttachments": [
+        {
+          "reactomeId": 1005,
+          "label": "é",
+          "shape": {
+            "a": {
+              "x": 355,
+              "y": 285
+            },
+            "b": {
+              "x": 365,
+              "y": 295
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "reactomeId": 1004,
+      "displayName": "it's > 1 & < 2",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 294,
+          "y": 294
+        },
+        "b": {
+          "x": 306,
+          "y": 306
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 240,
+            "y": 300
+          },
+          "to": {
+            "x": 294,
+            "y": 300
+          }
+        },
+        {
+          "from": {
+            "x": 306,
+            "y": 300
+          },
+          "to": {
+            "x": 360,
+            "y": 300
+          }
+        }
+      ]
+    }
+  ]
+}
