@@ -1,0 +1,237 @@
+{
+  "stableId": "ports",
+  "compartments": [],
+  "nodes": [
+    {
+      "id": 101,
+      "reactomeId": 9008,
+      "displayName": "entity 101",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 7,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "reactomeId": 9001,
+      "displayName": "reaction 1",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 2903.01,
+          "y": 100
+        },
+        "b": {
+          "x": 2915.54,
+          "y": 112
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 2850,
+            "y": 106
+          },
+          "to": {
+            "x": 2903.01,
+            "y": 106
+          }
+        },
+        {
+          "from": {
+            "x": 2915,
+            "y": 106
+          },
+          "to": {
+            "x": 2960,
+            "y": 106
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "reactomeId": 9002,
+      "displayName": "reaction 2",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 500,
+          "y": 3129.05
+        },
+        "b": {
+          "x": 512,
+          "y": 3152.29
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 506,
+            "y": 3100
+          },
+          "to": {
+            "x": 506,
+            "y": 3129.05
+          }
+        },
+        {
+          "from": {
+            "x": 506,
+            "y": 3152
+          },
+          "to": {
+            "x": 506,
+            "y": 3200
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "reactomeId": 9003,
+      "displayName": "reaction 3",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 336.03,
+          "y": 50
+        },
+        "b": {
+          "x": 341.98,
+          "y": 60
+        }
+      }
+    },
+    {
+      "id": 4,
+      "reactomeId": 9004,
+      "displayName": "reaction 4",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 652.62,
+          "y": 10
+        },
+        "b": {
+          "x": 672.2,
+          "y": 20
+        }
+      }
+    },
+    {
+      "id": 5,
+      "reactomeId": 9005,
+      "displayName": "reaction 5",
+      "reactionShape": {
+        "type": "CIRCLE",
+        "c": {
+          "x": 1429.67,
+          "y": 300
+        },
+        "r": 5.85
+      },
+      "segments": []
+    },
+    {
+      "id": 6,
+      "reactomeId": 9006,
+      "displayName": "reaction 6",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 20.3,
+          "y": 10
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 0,
+            "y": 5
+          },
+          "to": {
+            "x": 5,
+            "y": 5
+          }
+        },
+        {
+          "from": {
+            "x": 5,
+            "y": 5
+          },
+          "to": {
+            "x": 20.3,
+            "y": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "reactomeId": 9007,
+      "displayName": "reaction 7",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": -10.5,
+          "y": -4.5
+        },
+        "b": {
+          "x": 9.5,
+          "y": 5.5
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": -30,
+            "y": 1
+          },
+          "to": {
+            "x": -10.7,
+            "y": 2
+          }
+        },
+        {
+          "from": {
+            "x": -10.7,
+            "y": 2
+          },
+          "to": {
+            "x": 0,
+            "y": 3
+          }
+        },
+        {
+          "from": {
+            "x": 0,
+            "y": 3
+          },
+          "to": {
+            "x": 30,
+            "y": 4
+          }
+        }
+      ]
+    }
+  ]
+}

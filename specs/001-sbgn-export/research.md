@@ -85,6 +85,9 @@ same pathway in the same release.
    many of its OUTPUT arcs Java happened to write first. The reads that depend on it:
    - an INPUT without segments of its own: its start and end from `subList(0, 1)`, and its
      next points from the walk over the backbone;
+   - an INPUT with segments of its own: its next points too, which go on from its own
+     segments' to the walk over the backbone (`getArcNextList` walks it for every INPUT;
+     seen in Java's own answers, T008);
    - a CATALYST, INHIBITOR or ACTIVATOR without segments of its own: its start and end from
      the whole backbone;
    - an OUTPUT with segments of its own: its next points, from the walk over the backbone it
