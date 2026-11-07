@@ -14,8 +14,31 @@ SBGN converter in `reactome/diagram-exporter`:
 - **the website's SBGN of one pathway or reaction,** made on request by the website's
   content service, which imports this library.
 
-Both from one implementation, matching Java's output but for declared fixes. How is
-spec 001's to decide.
+Both from one implementation, matching Java's output but for declared fixes (spec 001,
+FR-003).
+
+## Where things are
+
+- **The library** (`src/`, what the website imports through `src/index.ts`): `layout.ts`
+  reads a diagram layout into its type; `geometry.ts` places ports and arc points as Java
+  does, in float step by step; `convert.ts` maps the layout to the document model
+  (`model.ts`); `write.ts` writes it as libSBGN 0.2 writes it, numbers through
+  `java-float.ts`, label widths from `text-width.ts`. `index.ts` imports none of the
+  command line's or the comparison's dependencies; `test/index.test.ts` checks what it
+  loads.
+- **The command line** (`src/cli.ts`, run as `node src/cli.ts`): `bulk`, `files`,
+  `convert` ([contract](specs/001-sbgn-export/contracts/cli.md)); the graph's list in
+  `graph.ts`, the archive in `tar.ts`. Its graph driver is a development dependency: the
+  `dist` branch drops it, so the website installs none of it.
+- **The comparison and checks** (`ci/`): `compare.ts` (by id, each difference given a
+  kind), `validate.sh` (libSBGN 0.2's schema), `float-check.ts`, `fixture-output.ts` (for
+  CI's `validate` job), `licences.ts`.
+- **Java's reference** (`ci/reference/`, run by hand, never in CI): `harness/` runs
+  diagram-exporter 2.0.12 on layouts in a container with no network, Arial mounted from
+  the host; `schematron/` runs libSBGN's PD rules; `widths/` measured the Arial table.
+- **Fixtures** (`fixtures/`, kept as their source wrote them, Prettier leaves them):
+  `layouts/` with Java's answers in `java/` are what the comparison runs on in CI;
+  the others serve one test each.
 
 ## Specs first: use Spec Kit
 
@@ -69,6 +92,11 @@ The compiler is as strict as WebsiteAngular's (`tsconfig.json`): `strict`,
   but never an object literal's.
 
 ## Proving what is written
+
+- **A change to what is written** is compared with Java's answers for the fixtures
+  (`test/fixtures.test.ts` runs `ci/compare.ts` with the layouts, and checks every byte
+  outside the declared kinds is Java's); a new case gets a fixture in `fixtures/layouts/`
+  and its Java answer from `ci/reference/harness/run.sh`.
 
 - **The reference** is what Java writes today: the content service's
   `/exporter/event/{id}.sbgn` on a local deployment, and the release's published
