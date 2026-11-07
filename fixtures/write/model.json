@@ -1,0 +1,204 @@
+{
+  "language": "process description",
+  "glyphs": [
+    {
+      "class": "compartment",
+      "id": "compartmentVertex_1_1",
+      "compartmentOrder": 10,
+      "label": {
+        "text": "cytosol",
+        "bbox": {
+          "x": 228.5,
+          "y": 570.25,
+          "w": 48,
+          "h": 24
+        }
+      },
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "w": 1234.5677490234375,
+        "h": 600.25
+      },
+      "glyphs": [],
+      "ports": []
+    },
+    {
+      "class": "macromolecule",
+      "id": "entityVertex_2_2",
+      "label": {
+        "text": "a&b<c>d\"e'f\tg"
+      },
+      "bbox": {
+        "x": -12.5,
+        "y": -0.0,
+        "w": 0,
+        "h": 0.0010000000474974513
+      },
+      "glyphs": [
+        {
+          "class": "unit of information",
+          "id": "entityVertex_3_1_mt",
+          "label": {
+            "text": "mt:prot"
+          },
+          "bbox": {
+            "x": 9999999,
+            "y": 10000000,
+            "w": 16,
+            "h": 16
+          },
+          "glyphs": [],
+          "ports": []
+        }
+      ],
+      "ports": []
+    },
+    {
+      "class": "complex",
+      "id": "entityVertex_4_4",
+      "label": {
+        "text": "two\nlines\r\nhere"
+      },
+      "bbox": {
+        "x": 0.000009999999747378752,
+        "y": 1.401298464324817e-45,
+        "w": 30000001024,
+        "h": 123456792
+      },
+      "glyphs": [],
+      "ports": []
+    },
+    {
+      "class": "simple chemical",
+      "id": "entityVertex_5_5",
+      "label": {
+        "text": "é α 中 😀"
+      },
+      "bbox": {
+        "x": 1e+39,
+        "y": -1e+39,
+        "w": 3.4028234663852886e+38,
+        "h": 1.1754943508222875e-38
+      },
+      "glyphs": [],
+      "ports": []
+    },
+    {
+      "class": "unspecified entity",
+      "id": "entityVertex_6_6",
+      "label": {
+        "text": ""
+      },
+      "bbox": {
+        "x": 1,
+        "y": 2,
+        "w": 3,
+        "h": 4
+      },
+      "glyphs": [],
+      "ports": []
+    },
+    {
+      "class": "process",
+      "id": "reactionVertex_7_7",
+      "label": {
+        "text": "reaction"
+      },
+      "bbox": {
+        "x": 100,
+        "y": 100,
+        "w": 12,
+        "h": 12
+      },
+      "glyphs": [],
+      "ports": [
+        {
+          "id": "reactionVertex_7.1",
+          "x": 96,
+          "y": 106
+        },
+        {
+          "id": "reactionVertex_7.2",
+          "x": 116,
+          "y": 106
+        }
+      ]
+    }
+  ],
+  "arcs": [
+    {
+      "class": "consumption",
+      "id": "arc_2_input_7",
+      "source": "entityVertex_2_2",
+      "target": "reactionVertex_7.1",
+      "glyphs": [
+        {
+          "class": "cardinality",
+          "id": "Stoichiometry_2_INPUT_7",
+          "label": {
+            "text": "2"
+          },
+          "bbox": {
+            "x": 336.0299987792969,
+            "y": 50,
+            "w": 5.95001220703125,
+            "h": 10.099998474121094
+          },
+          "glyphs": [],
+          "ports": []
+        }
+      ],
+      "start": {
+        "x": 50,
+        "y": 60
+      },
+      "next": [
+        {
+          "x": 70.5,
+          "y": 106
+        },
+        {
+          "x": 80.25,
+          "y": 106
+        }
+      ],
+      "end": {
+        "x": 96,
+        "y": 106
+      }
+    },
+    {
+      "class": "production",
+      "id": "arc_4_output_7",
+      "source": "reactionVertex_7.2",
+      "target": "entityVertex_4_4",
+      "glyphs": [],
+      "start": {
+        "x": 116,
+        "y": 106
+      },
+      "next": [],
+      "end": {
+        "x": 150,
+        "y": 106
+      }
+    },
+    {
+      "class": "catalysis",
+      "id": "arc_5_catalyst_7",
+      "source": "entityVertex_5_5",
+      "target": "reactionVertex_7_7",
+      "glyphs": [],
+      "start": {
+        "x": 106,
+        "y": 50
+      },
+      "next": [],
+      "end": {
+        "x": 106,
+        "y": 100
+      }
+    }
+  ]
+}

@@ -63,7 +63,8 @@ are written: a faded-out or crossed-out node's attachments take no number.
 
 **Validation:** every arc has a start and an end, or the conversion fails naming it; ids
 are unique in the document, or it fails naming the repeat (Java would write it; release 98
-has none).
+has none); a label with a character XML 1.0 cannot hold is refused naming its glyph (Java
+writes it, and no parser reads the file).
 
 ## Declared difference (comparison)
 
