@@ -87,7 +87,13 @@ export interface DiagramObject {
   readonly displayName: string;
 }
 
-export interface Compartment extends DiagramObject {
+export interface Compartment extends Omit<DiagramObject, 'reactomeId'> {
+  /**
+   * Absent for a compartment a reaction's layout draws around the reaction's own (its
+   * parent in GO's tree, such as the nuclear envelope around the nucleoplasm), which has
+   * no database object: Java writes `null` into its glyph's id.
+   */
+  readonly reactomeId?: ReactomeId;
   readonly prop: NodeProperties;
   /** Where its name is drawn. */
   readonly textPosition: Coordinate;
@@ -282,6 +288,10 @@ class Fields {
     return typeof value === 'number' && isReactomeId(value) ? value : this.refuse(key, WHOLE);
   }
 
+  optionalReactomeId(key: string): ReactomeId | undefined {
+    return this.get(key) === undefined ? undefined : this.reactomeId(key);
+  }
+
   oneOf<T extends string>(key: string, values: readonly T[]): T {
     const expected = `one of ${values.join(', ')}`;
     const value = this.required(key, expected);
@@ -352,9 +362,21 @@ function diagramObject(
 }
 
 function compartment(item: unknown, path: string): Compartment {
-  const { fields, object } = diagramObject(item, 'compartment', path);
+  const id = new Fields(item, 'the diagram', path).layoutId('id');
+  const named = new Fields(item, `compartment ${String(id)} (${path})`, '');
+  const reactomeId = named.optionalReactomeId('reactomeId');
+  const fields =
+    reactomeId === undefined
+      ? named
+      : new Fields(
+          item,
+          `compartment ${String(id)} (reactomeId ${String(reactomeId)}, ${path})`,
+          ''
+        );
   return {
-    ...object,
+    id,
+    ...(reactomeId === undefined ? {} : { reactomeId }),
+    displayName: fields.string('displayName'),
     prop: nodeProperties(fields.object('prop')),
     textPosition: coordinate(fields.object('textPosition')),
   };
