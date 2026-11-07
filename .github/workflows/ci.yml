@@ -70,3 +70,27 @@ jobs:
             # (spec 001 T002, constitution VII).
             - name: Licences
               run: node ci/licences.ts
+
+    # Every fixture's output valid against libSBGN 0.2's schema, the one the files declare
+    # (spec 001 T019, constitution IV). Nothing to install but xmllint: the exporter has no
+    # dependencies, and Node runs its TypeScript as it is.
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+
+            - name: libxml2's xmllint
+              run: |
+                  sudo apt-get update -qq
+                  sudo apt-get install -y -qq --no-install-recommends libxml2-utils
+                  xmllint --version
+
+            - name: Every fixture's output
+              run: node ci/fixture-output.ts output/fixtures
+
+            - name: Valid against libSBGN 0.2's schema
+              run: ci/validate.sh output/fixtures
