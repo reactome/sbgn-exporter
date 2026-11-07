@@ -89,6 +89,10 @@ const FOUR = float32(4);
 function edgeName(edge) {
     return `edge ${String(edge.id)} (reactomeId ${String(edge.reactomeId)})`;
 }
+/** A backbone none of whose segments touches the shape, where Java throws. */
+function untouched(edge) {
+    return new SbgnLayoutError(`Diagram layout, ${edgeName(edge)}: no segment of its backbone touches its shape`);
+}
 /** The process glyph's box (getEdgeGlyph): a box's corners, or a circle's square. */
 function processBox(shape) {
     if (shape.type === 'BOX') {
@@ -137,9 +141,8 @@ export function processGeometry(edge) {
     const bounds = new ShapeBounds(shape);
     const candidates = backbone.filter((segment) => bounds.touches(segment));
     const first = candidates[0];
-    if (first === undefined) {
-        throw new SbgnLayoutError(`Diagram layout, ${edgeName(edge)}: no segment of its backbone touches its shape`);
-    }
+    if (first === undefined)
+        throw untouched(edge);
     const second = candidates[1] ?? first;
     // A double difference against the float width, widened, as Java compares them.
     if (Math.abs(first.from.x - second.to.x) > box.w) {
@@ -192,10 +195,18 @@ function nextPoints(connector, edge, bounds) {
     return connector.type === 'OUTPUT' ? next.toReversed() : next;
 }
 /**
- * The segments whose ends are an arc's start and end (`Participant.getSegments`): the
- * connector's own, if it has any; else, for an INPUT, the backbone's first segment; for an
- * OUTPUT, its second (its only one, if it has one), the segment Java picks, whose two ends
- * D6 takes; for a regulator, the whole backbone, if any.
+ * The segments whose ends are an arc's start and end: the connector's own, if it has any;
+ * else, for an INPUT, the backbone's first segment, and for a regulator the whole backbone,
+ * if any, as `Participant.getSegments` takes them.
+ *
+ * For an OUTPUT without segments of its own, D6 (research R3.6): the backbone from its
+ * last segment that touches the reaction's shape to its end, which is the part from the
+ * reaction's output port to the product. Its start is that segment's `from`, and its end
+ * the last segment's `to`; the next points Java's walk gives are the `from` of each
+ * segment between. Java instead takes the backbone's second segment (its only one, if it
+ * has one), which leads away from the reaction only on a backbone of one or two segments.
+ * Java's refusals are kept: a missing or empty backbone, and one that never touches the
+ * shape (Java's `getEdgeGlyph` throws on it).
  */
 function arcLine(node, connector, edge) {
     const own = connector.segments;
@@ -204,19 +215,24 @@ function arcLine(node, connector, edge) {
     if (connector.type !== 'INPUT' && connector.type !== 'OUTPUT')
         return edge.segments;
     const backbone = edge.segments ?? [];
-    const picked = connector.type === 'INPUT' || backbone.length === 1 ? 0 : 1;
-    const segment = backbone[picked];
-    if (segment === undefined) {
+    if (backbone.length === 0) {
         const has = edge.segments === undefined ? 'no backbone' : `${String(backbone.length)} segments`;
         throw new SbgnLayoutError(`Diagram layout, node ${String(node.id)} (reactomeId ${String(node.reactomeId)}): ` +
             `its ${connector.type} to ${edgeName(edge)} has no segments of its own, and the ` +
             `reaction's backbone, which it would take, has ${has}`);
     }
-    return [segment];
+    if (connector.type === 'INPUT')
+        return backbone.slice(0, 1);
+    const bounds = new ShapeBounds(edge.reactionShape);
+    const output = backbone.findLastIndex((segment) => bounds.touches(segment));
+    if (output < 0)
+        throw untouched(edge);
+    return backbone.slice(output);
 }
 /**
  * An arc's points (`getArc`), with D2 (the backbone as given), D6 (an OUTPUT without
- * segments of its own runs along the segment Java picks, from its `from` to its `to`) and
+ * segments of its own runs along the backbone from the reaction's output port to its end,
+ * towards the product) and
  * D5 (an OUTPUT with segments of its own runs from the reaction: Java's end is its start
  * and Java's start its end; the next points are Java's).
  *
@@ -224,7 +240,8 @@ function arcLine(node, connector, edge) {
  * INHIBITOR or ACTIVATOR) with no segments of its own on a reaction without a backbone.
  *
  * @throws SbgnLayoutError for an INPUT or OUTPUT without segments of its own on a reaction
- *   whose backbone is missing or too short, where Java's `subList` throws.
+ *   whose backbone is missing or empty, where Java's `subList` throws, or, for such an
+ *   OUTPUT, one none of whose segments touches the reaction's shape.
  */
 export function arcPoints(node, connector, edge) {
     const line = arcLine(node, connector, edge);

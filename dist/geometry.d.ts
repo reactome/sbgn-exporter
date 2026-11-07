@@ -71,7 +71,8 @@ export declare class ShapeBounds {
 export declare function processGeometry(edge: Edge): ProcessGeometry;
 /**
  * An arc's points (`getArc`), with D2 (the backbone as given), D6 (an OUTPUT without
- * segments of its own runs along the segment Java picks, from its `from` to its `to`) and
+ * segments of its own runs along the backbone from the reaction's output port to its end,
+ * towards the product) and
  * D5 (an OUTPUT with segments of its own runs from the reaction: Java's end is its start
  * and Java's start its end; the next points are Java's).
  *
@@ -79,6 +80,7 @@ export declare function processGeometry(edge: Edge): ProcessGeometry;
  * INHIBITOR or ACTIVATOR) with no segments of its own on a reaction without a backbone.
  *
  * @throws SbgnLayoutError for an INPUT or OUTPUT without segments of its own on a reaction
- *   whose backbone is missing or too short, where Java's `subList` throws.
+ *   whose backbone is missing or empty, where Java's `subList` throws, or, for such an
+ *   OUTPUT, one none of whose segments touches the reaction's shape.
  */
 export declare function arcPoints(node: Node, connector: Connector, edge: Edge): ArcPoints | undefined;
