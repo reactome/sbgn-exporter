@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph class="macromolecule" id="entityVertex_1001_11">
+            <label text="entity 11"/>
+            <bbox w="60.0" h="20.0" x="80.0" y="90.0"/>
+        </glyph>
+        <glyph class="dissociation" id="reactionVertex_1015_5">
+            <label text="reaction 5"/>
+            <bbox w="12.0" h="12.0" x="194.0" y="494.0"/>
+            <port id="reactionVertex_1015.1" x="190.0" y="500.0"/>
+            <port id="reactionVertex_1015.2" x="210.0" y="500.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1006_32">
+            <label text="entity 32"/>
+            <bbox w="60.0" h="20.0" x="260.0" y="290.0"/>
+        </glyph>
+        <glyph class="association" id="reactionVertex_1014_4">
+            <label text="reaction 4"/>
+            <bbox w="12.0" h="12.0" x="194.0" y="394.0"/>
+            <port id="reactionVertex_1014.1" x="190.0" y="400.0"/>
+            <port id="reactionVertex_1014.2" x="210.0" y="400.0"/>
+        </glyph>
+        <glyph class="uncertain process" id="reactionVertex_1012_2">
+            <label text="reaction 2"/>
+            <bbox w="12.0" h="12.0" x="194.0" y="194.0"/>
+            <port id="reactionVertex_1012.1" x="190.0" y="200.0"/>
+            <port id="reactionVertex_1012.2" x="210.0" y="200.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1003_21">
+            <label text="entity 21"/>
+            <bbox w="60.0" h="20.0" x="80.0" y="190.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1005_31">
+            <label text="entity 31"/>
+            <bbox w="60.0" h="20.0" x="80.0" y="290.0"/>
+        </glyph>
+        <glyph class="process" id="reactionVertex_1011_1">
+            <label text="reaction 1"/>
+            <bbox w="12.0" h="12.0" x="194.0" y="94.0"/>
+            <port id="reactionVertex_1011.1" x="190.0" y="100.0"/>
+            <port id="reactionVertex_1011.2" x="210.0" y="100.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1008_42">
+            <label text="entity 42"/>
+            <bbox w="60.0" h="20.0" x="260.0" y="390.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1004_22">
+            <label text="entity 22"/>
+            <bbox w="60.0" h="20.0" x="260.0" y="190.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1002_12">
+            <label text="entity 12"/>
+            <bbox w="60.0" h="20.0" x="260.0" y="90.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1007_41">
+            <label text="entity 41"/>
+            <bbox w="60.0" h="20.0" x="80.0" y="390.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1010_52">
+            <label text="entity 52"/>
+            <bbox w="60.0" h="20.0" x="260.0" y="490.0"/>
+        </glyph>
+        <glyph class="macromolecule" id="entityVertex_1009_51">
+            <label text="entity 51"/>
+            <bbox w="60.0" h="20.0" x="80.0" y="490.0"/>
+        </glyph>
+        <glyph class="omitted process" id="reactionVertex_1013_3">
+            <label text="reaction 3"/>
+            <bbox w="12.0" h="12.0" x="194.0" y="294.0"/>
+            <port id="reactionVertex_1013.1" x="190.0" y="300.0"/>
+            <port id="reactionVertex_1013.2" x="210.0" y="300.0"/>
+        </glyph>
+        <arc class="production" id="arc_12_output_1" source="reactionVertex_1011.2" target="entityVertex_1002_12">
+            <start x="206.0" y="100.0"/>
+            <end x="194.0" y="100.0"/>
+        </arc>
+        <arc class="consumption" id="arc_21_input_2" source="entityVertex_1003_21" target="reactionVertex_1012.1">
+            <start x="140.0" y="200.0"/>
+            <end x="194.0" y="200.0"/>
+        </arc>
+        <arc class="production" id="arc_52_output_5" source="reactionVertex_1015.2" target="entityVertex_1010_52">
+            <start x="206.0" y="500.0"/>
+            <end x="194.0" y="500.0"/>
+        </arc>
+        <arc class="production" id="arc_42_output_4" source="reactionVertex_1014.2" target="entityVertex_1008_42">
+            <start x="206.0" y="400.0"/>
+            <end x="194.0" y="400.0"/>
+        </arc>
+        <arc class="consumption" id="arc_11_input_1" source="entityVertex_1001_11" target="reactionVertex_1011.1">
+            <start x="206.0" y="100.0"/>
+            <end x="260.0" y="100.0"/>
+        </arc>
+        <arc class="production" id="arc_22_output_2" source="reactionVertex_1012.2" target="entityVertex_1004_22">
+            <start x="206.0" y="200.0"/>
+            <end x="194.0" y="200.0"/>
+        </arc>
+        <arc class="consumption" id="arc_51_input_5" source="entityVertex_1009_51" target="reactionVertex_1015.1">
+            <start x="206.0" y="500.0"/>
+            <end x="260.0" y="500.0"/>
+        </arc>
+        <arc class="consumption" id="arc_31_input_3" source="entityVertex_1005_31" target="reactionVertex_1013.1">
+            <start x="140.0" y="300.0"/>
+            <end x="194.0" y="300.0"/>
+        </arc>
+        <arc class="consumption" id="arc_41_input_4" source="entityVertex_1007_41" target="reactionVertex_1014.1">
+            <start x="206.0" y="400.0"/>
+            <end x="260.0" y="400.0"/>
+        </arc>
+        <arc class="production" id="arc_32_output_3" source="reactionVertex_1013.2" target="entityVertex_1006_32">
+            <start x="206.0" y="300.0"/>
+            <end x="194.0" y="300.0"/>
+        </arc>
+    </map>
+</sbgn>

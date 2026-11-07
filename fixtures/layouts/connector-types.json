@@ -1,0 +1,187 @@
+{
+  "stableId": "R-HSA-0",
+  "compartments": [],
+  "nodes": [
+    {
+      "id": 11,
+      "reactomeId": 1001,
+      "displayName": "entity 11",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 180,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "reactomeId": 1002,
+      "displayName": "entity 12",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 360,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "reactomeId": 1003,
+      "displayName": "entity 13",
+      "renderableClass": "Complex",
+      "prop": {
+        "x": 270,
+        "y": 120,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "CATALYST",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 300,
+                "y": 200
+              },
+              "to": {
+                "x": 300,
+                "y": 294
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "reactomeId": 1004,
+      "displayName": "entity 14",
+      "renderableClass": "Chemical",
+      "prop": {
+        "x": 200,
+        "y": 120,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "INHIBITOR",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 230,
+                "y": 140
+              },
+              "to": {
+                "x": 296,
+                "y": 294
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "reactomeId": 1005,
+      "displayName": "entity 15",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 360,
+        "y": 120,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "ACTIVATOR",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 380,
+                "y": 140
+              },
+              "to": {
+                "x": 304,
+                "y": 294
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "reactomeId": 1006,
+      "displayName": "reaction 1",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 294,
+          "y": 294
+        },
+        "b": {
+          "x": 306,
+          "y": 306
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 240,
+            "y": 300
+          },
+          "to": {
+            "x": 294,
+            "y": 300
+          }
+        },
+        {
+          "from": {
+            "x": 306,
+            "y": 300
+          },
+          "to": {
+            "x": 360,
+            "y": 300
+          }
+        }
+      ]
+    }
+  ]
+}

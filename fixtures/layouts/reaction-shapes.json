@@ -1,0 +1,404 @@
+{
+  "stableId": "R-HSA-0",
+  "compartments": [],
+  "nodes": [
+    {
+      "id": 11,
+      "reactomeId": 1001,
+      "displayName": "entity 11",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 80,
+        "y": 90,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "reactomeId": 1002,
+      "displayName": "entity 12",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 260,
+        "y": 90,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 1,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "reactomeId": 1003,
+      "displayName": "entity 21",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 80,
+        "y": 190,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 2,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "reactomeId": 1004,
+      "displayName": "entity 22",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 260,
+        "y": 190,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 2,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "reactomeId": 1005,
+      "displayName": "entity 31",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 80,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 3,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "reactomeId": 1006,
+      "displayName": "entity 32",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 260,
+        "y": 290,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 3,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "reactomeId": 1007,
+      "displayName": "entity 41",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 80,
+        "y": 390,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 4,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "reactomeId": 1008,
+      "displayName": "entity 42",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 260,
+        "y": 390,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 4,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "reactomeId": 1009,
+      "displayName": "entity 51",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 80,
+        "y": 490,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 5,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "reactomeId": 1010,
+      "displayName": "entity 52",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 260,
+        "y": 490,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 5,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "reactomeId": 1011,
+      "displayName": "reaction 1",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 194,
+          "y": 94
+        },
+        "b": {
+          "x": 206,
+          "y": 106
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 140,
+            "y": 100
+          },
+          "to": {
+            "x": 194,
+            "y": 100
+          }
+        },
+        {
+          "from": {
+            "x": 206,
+            "y": 100
+          },
+          "to": {
+            "x": 260,
+            "y": 100
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "reactomeId": 1012,
+      "displayName": "reaction 2",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 194,
+          "y": 194
+        },
+        "b": {
+          "x": 206,
+          "y": 206
+        },
+        "s": "?"
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 140,
+            "y": 200
+          },
+          "to": {
+            "x": 194,
+            "y": 200
+          }
+        },
+        {
+          "from": {
+            "x": 206,
+            "y": 200
+          },
+          "to": {
+            "x": 260,
+            "y": 200
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "reactomeId": 1013,
+      "displayName": "reaction 3",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 194,
+          "y": 294
+        },
+        "b": {
+          "x": 206,
+          "y": 306
+        },
+        "s": "omitted"
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 140,
+            "y": 300
+          },
+          "to": {
+            "x": 194,
+            "y": 300
+          }
+        },
+        {
+          "from": {
+            "x": 206,
+            "y": 300
+          },
+          "to": {
+            "x": 260,
+            "y": 300
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "reactomeId": 1014,
+      "displayName": "reaction 4",
+      "reactionShape": {
+        "type": "CIRCLE",
+        "c": {
+          "x": 200,
+          "y": 400
+        },
+        "r": 6
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 140,
+            "y": 400
+          },
+          "to": {
+            "x": 194,
+            "y": 400
+          }
+        },
+        {
+          "from": {
+            "x": 206,
+            "y": 400
+          },
+          "to": {
+            "x": 260,
+            "y": 400
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "reactomeId": 1015,
+      "displayName": "reaction 5",
+      "reactionShape": {
+        "type": "DOUBLE_CIRCLE",
+        "c": {
+          "x": 200,
+          "y": 500
+        },
+        "r": 6
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 140,
+            "y": 500
+          },
+          "to": {
+            "x": 194,
+            "y": 500
+          }
+        },
+        {
+          "from": {
+            "x": 206,
+            "y": 500
+          },
+          "to": {
+            "x": 260,
+            "y": 500
+          }
+        }
+      ]
+    }
+  ]
+}
