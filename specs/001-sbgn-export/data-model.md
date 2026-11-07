@@ -6,15 +6,19 @@ The JSON of a release's `diagram/{stId}.json`, and of the website's reaction lay
 (WebsiteAngular `/exporter/reaction/{id}/diagram`). Only the fields the conversion reads
 are typed; others are ignored.
 
-| Object      | Fields read                                                                                                                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Diagram     | `stableId`, `compartments[]`, `nodes[]`, `edges[]` (`links`, `shadows`, `notes` are not read)                                  |
-| Compartment | `id`, `reactomeId`, `displayName`, `prop {x, y, width, height}`, `textPosition {x, y}`                                         |
-| Node        | `id`, `reactomeId`, `displayName`, `renderableClass`, `prop`, `isFadeOut?`, `isCrossed?`, `nodeAttachments[]?`, `connectors[]` |
-| Attachment  | `reactomeId`, `label?`, `shape.a {x, y}`                                                                                       |
-| Connector   | `edgeId`, `type` (INPUT, OUTPUT, CATALYST, INHIBITOR, ACTIVATOR), `segments[]?`, `stoichiometry {value, shape? {a, b}}`        |
-| Edge        | `id`, `reactomeId`, `displayName`, `isFadeOut?`, `reactionShape {type, a?, b?, c?, r?, s?}`, `segments[]?`                     |
-| Segment     | `from {x, y}`, `to {x, y}`                                                                                                     |
+| Object      | Fields read                                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Diagram     | `stableId`, `compartments[]`, `nodes[]`, `edges[]` (`links`, `shadows`, `notes` are not read)                                             |
+| Compartment | `id`, `reactomeId`, `displayName`, `prop {x, y, width, height}`, `textPosition {x, y}`                                                    |
+| Node        | `id`, `reactomeId`, `displayName`, `renderableClass`, `prop`, `isFadeOut?`, `isCrossed?`, `nodeAttachments[]?`, `connectors[]`            |
+| Attachment  | `reactomeId`, `label?`, `shape.a {x, y}`                                                                                                  |
+| Connector   | `edgeId`, `type` (INPUT, OUTPUT, CATALYST, INHIBITOR, ACTIVATOR), `segments[]?`, `stoichiometry {value, shape? {a, b}}`                   |
+| Edge        | `id`, `reactomeId`, `displayName`, `isFadeOut?`, `reactionShape`: `BOX {a, b, s?}` or `CIRCLE`, `DOUBLE_CIRCLE {c, r, s?}`, `segments[]?` |
+| Segment     | `from {x, y}`, `to {x, y}`                                                                                                                |
+
+A field marked `?` may be absent; a `null` is read as absent, as Java's reader makes both
+a null. Any other field of the wrong type, missing or outside its values is refused with an
+`SbgnLayoutError` naming the object (`src/layout.ts`).
 
 **Rules:**
 
