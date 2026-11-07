@@ -87,7 +87,10 @@ function pathway(row: unknown, index: number): BulkPathway {
  *   listed twice.
  */
 export async function bulkList(graph: GraphReader, speciesName: string): Promise<BulkPathway[]> {
-  const rows = await graph.read(BULK_QUERY, { speciesName });
+  return checked(await graph.read(BULK_QUERY, { speciesName }));
+}
+
+function checked(rows: readonly unknown[]): BulkPathway[] {
   const list = rows.map(pathway);
   const seen = new Set<string>();
   for (const { stId } of list) {
@@ -95,6 +98,49 @@ export async function bulkList(graph: GraphReader, speciesName: string): Promise
     seen.add(stId);
   }
   return list;
+}
+
+/**
+ * diagram-exporter's query for a list of pathways (`--target` with more than one
+ * identifier, Main.java), returning each pathway's stable id and dbId in place of the node.
+ */
+export const LIST_QUERY =
+  'MATCH (p:Pathway{hasDiagram:True}) ' +
+  'WHERE p.dbId IN $dbIds OR p.stId IN $stIds ' +
+  'WITH DISTINCT p ' +
+  'RETURN p.stId AS stId, p.dbId AS dbId ' +
+  'ORDER BY p.dbId';
+
+/** A pathway's identifier as given: a stable id (its version dropped) or a dbId. */
+export type PathwayIdentifier =
+  | { readonly stId: string; readonly given: string }
+  | { readonly dbId: number; readonly given: string };
+
+/** An identifier read as Java reads one, or undefined for one that is neither form. */
+export function pathwayIdentifier(given: string): PathwayIdentifier | undefined {
+  const stable = /^(R-[A-Z]{3,4}-\d+)(?:\.\d+)?$/.exec(given);
+  if (stable?.[1] !== undefined) return { stId: stable[1], given };
+  if (/^\d+$/.test(given)) {
+    const dbId = Number(given);
+    if (Number.isSafeInteger(dbId)) return { dbId, given };
+  }
+  return undefined;
+}
+
+/**
+ * The pathways with a diagram among those identified, ordered by dbId, as diagram-exporter
+ * lists them; an identifier that names none of them is left out, as Java leaves it out.
+ */
+export async function pathwayList(
+  graph: GraphReader,
+  identifiers: readonly PathwayIdentifier[]
+): Promise<BulkPathway[]> {
+  const stIds = identifiers.flatMap((id) => ('stId' in id ? [id.stId] : []));
+  // As Bolt integers: a JavaScript number goes as a float, which an index on dbId,
+  // an integer, may not be used for.
+  const dbIds = identifiers.flatMap((id) => ('dbId' in id ? [neo4j.int(id.dbId)] : []));
+  const rows = await graph.read(LIST_QUERY, { dbIds, stIds });
+  return checked(rows);
 }
 
 /** What this module uses of a `neo4j-driver` session's transaction. */
