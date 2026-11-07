@@ -8,10 +8,18 @@ updates:
       schedule:
           interval: weekly
       open-pull-requests-limit: 5
-      # TypeScript's major versions wait until typescript-eslint's peer range takes
-      # them: TypeScript 7 broke npm ci (ERESOLVE) in #26. Minor and patch still come.
+      # Major versions held: TypeScript's until typescript-eslint's peer range takes
+      # them (TypeScript 7 broke npm ci in #26); the others below. Minor and patch
+      # updates still come.
       ignore:
           - dependency-name: typescript
+            update-types: ['version-update:semver-major']
+          # Node's types follow the Node the code runs on (24, package.json's engines).
+          - dependency-name: '@types/node'
+            update-types: ['version-update:semver-major']
+          # A new driver major is checked against a real graph by hand (bulk run,
+          # T026), and moves with pdf-export's, not on its own.
+          - dependency-name: neo4j-driver
             update-types: ['version-update:semver-major']
       groups:
           npm:
