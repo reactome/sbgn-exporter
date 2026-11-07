@@ -3,7 +3,7 @@
 // - ports.json: one reaction for each of the roundings and tests getEdgeGlyph makes,
 //   and one with negative coordinates, with an INPUT arc;
 // - arcs.json: one arc of each kind (INPUT, OUTPUT, regulators; with and without
-//   segments of their own; OUTPUTs on backbones of one to four segments) and the ones
+//   segments of their own; OUTPUTs on backbones of one to five segments) and the ones
 //   Java throws on;
 // - order.json: one reaction's arcs, OUTPUTs among them, read one after another; and a
 //   reaction none of whose segments touches its shape.
@@ -53,6 +53,16 @@ function arc(layout: DiagramLayout, nodeId: number): ArcPoints | undefined {
   const connector = node.connectors[0];
   assert.ok(connector);
   return arcPoints(node, connector, edgeOf(layout, connector.edgeId));
+}
+
+/** Whether a segment touches the shape of the reaction the node's only connector goes to. */
+function touchesShape(
+  layout: DiagramLayout,
+  node: DiagramLayout['nodes'][number],
+  segment: { from: { x: number; y: number }; to: { x: number; y: number } }
+): boolean {
+  const edge = edgeOf(layout, node.connectors[0]?.edgeId ?? -1);
+  return new ShapeBounds(edge.reactionShape).touches(segment);
 }
 
 type Pair = [number, number];
@@ -221,44 +231,63 @@ test("an INPUT or a regulator is Java's, from the backbone as given (D2)", () =>
   assert.equal(arc(arcs, 121), undefined);
 });
 
-test('an OUTPUT without segments of its own runs along the segment Java picks (D6)', () => {
-  // Java, fresh: [start, next, end]. D6: start and end are the picked segment's from and
-  // to (its second segment; its only one on a one-segment backbone), next are Java's.
-  const cases: [number, string, Pair[], Pair, Pair[], Pair, Pair, Pair][] = [
-    // node, backbone, Java's start, next, end, and the picked segment's from and to
-    [111, 'one segment', [], [100, 106], [], [150, 106], [100, 106], [150, 106]],
-    [112, 'two segments', [], [106, 106], [], [106, 106], [106, 106], [150, 106]],
-    [113, 'three segments', [], [112, 106], [[150, 106]], [150, 106], [112, 106], [150, 106]],
-    [
-      114,
-      'four segments',
-      [],
-      [200, 162.5],
-      [[340, 162.5]],
-      [340, 162.5],
-      [200, 162.5],
-      [293, 162.5],
-    ],
+test('an OUTPUT without segments of its own runs from the output port to the end of the backbone (D6)', () => {
+  // D6 (research R3.6): the backbone from its last segment touching the reaction's shape
+  // (sK) to its last segment (sN): start sK.from, end sN.to, and next the from of each
+  // segment between, which is Java's own walk. Java, fresh: its [start, next, end], from
+  // the second segment (the only one, on a one-segment backbone).
+  type Case = [number, string, number, Pair, Pair[], Pair, Pair, Pair];
+  const cases: Case[] = [
+    // node, backbone (T touches the shape), K, Java's start, next, end, D6's start, end
+    [111, 'T', 0, [100, 106], [], [150, 106], [100, 106], [150, 106]],
+    [112, 'TT', 1, [106, 106], [], [106, 106], [106, 106], [150, 106]],
+    [113, 'TT-', 1, [112, 106], [[150, 106]], [150, 106], [112, 106], [170, 130]],
+    [128, '-TT', 2, [100, 140], [], [106, 106], [106, 106], [150, 60]],
+    [114, '-TT-', 2, [200, 162.5], [[340, 162.5]], [340, 162.5], [305, 162.5], [360, 150]],
     // its own segments an empty list: as none
+    [120, '-TT-, own []', 2, [200, 162.5], [[340, 162.5]], [340, 162.5], [305, 162.5], [360, 150]],
     [
-      120,
-      'four segments, own []',
-      [],
-      [200, 162.5],
-      [[340, 162.5]],
-      [340, 162.5],
-      [200, 162.5],
-      [293, 162.5],
+      127,
+      'TT--',
+      1,
+      [106, 106],
+      [
+        [150, 106],
+        [150, 60],
+      ],
+      [150, 60],
+      [106, 106],
+      [130, 40],
+    ],
+    [
+      126,
+      '-TT--',
+      2,
+      [60, 106],
+      [
+        [150, 106],
+        [170, 130],
+      ],
+      [170, 130],
+      [112, 106],
+      [190, 160],
     ],
   ];
-  for (const [node, what, , javaStart, javaNext, javaEnd, from, to] of cases) {
-    // Java's own start is always the picked segment's from
-    assert.deepEqual(javaStart, from, what);
-    const expected = points(from, javaNext, to);
-    assert.deepEqual(arc(arcs, node), expected, what);
-    // Java's end differs on two and four segments (s0.to, s2.to), not on one or three
-    const same = what.startsWith('one') || what.startsWith('three');
-    assert.equal(JSON.stringify(javaEnd) === JSON.stringify(to), same, what);
+  for (const [nodeId, what, k, , javaNext, , start, end] of cases) {
+    // the rule, read off the layout
+    const node = arcs.nodes.find((n) => n.id === nodeId);
+    assert.ok(node);
+    const backbone = edgeOf(arcs, node.connectors[0]?.edgeId ?? -1).segments ?? [];
+    const pattern = backbone.map((segment) => (touchesShape(arcs, node, segment) ? 'T' : '-'));
+    assert.equal(pattern.join(''), what.split(',')[0], what);
+    assert.deepEqual(pt(start), backbone[k]?.from, what);
+    assert.deepEqual(pt(end), backbone.at(-1)?.to, what);
+    assert.deepEqual(
+      javaNext.map(pt),
+      backbone.slice(k + 1).map((segment) => segment.from),
+      what
+    );
+    assert.deepEqual(arc(arcs, nodeId), points(start, javaNext, end), what);
   }
 });
 
@@ -319,7 +348,7 @@ test("a reaction's arcs read its backbone as given, whatever was written before 
   const before = structuredClone(order);
   // Java, fresh: each arc from the backbone as given; D6 for 131, D5 for 134
   const fresh = new Map<number, unknown>([
-    [131, points([200, 162.5], [[340, 162.5]], [293, 162.5])],
+    [131, points([305, 162.5], [[340, 162.5]], [360, 150])],
     [
       136,
       points(

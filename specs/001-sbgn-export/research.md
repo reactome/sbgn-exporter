@@ -134,18 +134,42 @@ same pathway in the same release.
      production arcs. With the backbone reversed when the arc starts (D2), start `s0.from`
      and end `s1.to` instead, a line through the whole reaction;
    - **three or more segments:** start `s1.from`, end the second segment of the reversed
-     list, `s(n-2).to`. Not seen in the files read; a fixture pins it (T013).
+     list, `s(n-2).to`.
 
-   **Fix (D6), decided by the user on 6 Nov 2026:** start and end both on the segment Java
-   picks (`s1`, or `s0` for one segment): start at its `from`, at the reaction, and end at
-   its `to`, towards the product. The next points are those of Java's walk over a reversed
-   copy of the backbone. D5 is not applied: the arc already runs from the reaction to the
-   product.
+   **How often, and which segment leads to the product.** Measured on 7 Nov 2026 over 40 of
+   release 98's diagram files (every 35th name of the bulk file's 1,390): 605 OUTPUT arcs,
+   320 with segments of their own and 285 without. Of those 285, the backbone has two
+   segments 281 times, three twice, four twice, and never one or five or more. Writing T
+   for a segment that touches the reaction's shape (`ShapeWrapper`) and - for one that does
+   not, the two-segment backbones are all `TT` (into the box, out of it), the three-segment
+   ones `-TT`, and the four-segment ones `TT--` and `-TT-`. In every one, the backbone runs
+   from the box to the product from its last segment that touches the shape, and ends at
+   the product: its last segment's `to` is within 6 units of the product's box, and no
+   other segment is nearer to it. Java's `s1` is that segment only on a backbone of one or
+   two segments; on the three-segment ones it is the segment that leads into the box from
+   the input side.
+
+   **Fix (D6), decided by the user on 6 Nov 2026:** draw these arcs along the reaction's
+   output segment to the product. In terms of the layout: the backbone from its last
+   segment that touches the reaction's shape (`sK`, by `ShapeWrapper`'s test) to its last
+   segment (`sN`). The start is `sK.from`, at the reaction; the next points are the `from`
+   of each segment after `sK`, in order, which is exactly what Java's walk over a reversed
+   copy of the backbone gives; the end is `sN.to`, at the product. A backbone none of whose
+   segments touches the shape is refused, as Java's `getEdgeGlyph` refuses it. D5 is not
+   applied: the arc already runs from the reaction to the product.
+
+   The rule was first written as "start and end on the segment Java picks" (`s1`, or `s0`
+   for one segment), and ported so in T008. That is the same on a backbone of one segment
+   and on a two-segment one whose second segment touches the shape (every one measured).
+   It is not on three or more: on the measured `-TT` it drew the arc along the segment into
+   the box, and on a `TT-` it stopped at the end of `s1`, short of the product. Corrected
+   on 7 Nov 2026 to follow the decision; not a new decision.
 
 7. **How D2, D5 and D6 compose.** Ours are computed in three steps:
    1. **D2:** the backbone as the layout gives it, with every reversal made on a copy;
-   2. **D6:** for an OUTPUT without segments of its own, start and end from the segment
-      Java picks, as above;
+   2. **D6:** for an OUTPUT without segments of its own, start at the `from` of the
+      backbone's last segment that touches the shape and end at the backbone's last `to`,
+      as above; the next points stay Java's;
    3. **D5:** for an OUTPUT with segments of its own, start and end swapped.
 
    Every other arc is D2 alone. **The comparison** (R12) recomputes Java's possible

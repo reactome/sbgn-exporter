@@ -222,9 +222,11 @@ whole bulk file of a release once, against the libSBGN schema the files declare.
     are Java's, unchanged (research R3.5);
   - **D6, output arcs without a line of their own are drawn along the reaction's output
     segment:** Java reads their start before reversing the reaction's line and their end
-    after, which on a two-segment line gives a single point. Ours start and end on the
-    segment Java picks, from the reaction to the product (research R3.6). D5 does not
-    apply to them.
+    after, which on a two-segment line gives a single point, and its pick of the line's
+    second segment leads away from the reaction only on a line of one or two segments.
+    Ours run along the reaction's line from its output port to its end, at the product:
+    from the last segment that touches the reaction's shape to the line's last segment
+    (research R3.6). D5 does not apply to them.
 
   How D2, D5 and D6 compose, and how the comparison checks them, is research R3.7. D4, D5,
   D6 and the bulk file's species (FR-013) were decided by the user on 6 Nov 2026 (see
@@ -341,7 +343,8 @@ Decided by the user on 6 Nov 2026:
   the reaction to the product.
 - **D6, single-point output arcs fixed.** An output arc with no line of its own is drawn
   along the reaction's output segment to the product, not as the single point Java
-  writes.
+  writes. Stated in terms of the layout (research R3.6): along the reaction's line from
+  the last segment touching the reaction's shape to the line's end.
 
 ## Assumptions
 

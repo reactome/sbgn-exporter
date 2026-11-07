@@ -65,20 +65,25 @@ has none).
 
 ## Declared difference (comparison)
 
-| Kind | What may differ                                                         | Where it comes from |
-| ---- | ----------------------------------------------------------------------- | ------------------- |
-| D1   | order of glyphs and arcs                                                | research R3.1       |
-| D2   | points of arcs of an edge with an OUTPUT, as Java's reversal would give | R3.2                |
-| D3   | `stoichiometry` → `cardinality`                                         | R3.4                |
-| D4   | label box widths; only in bulk mode, against the published bulk file    | R3.3                |
-| D5   | an OUTPUT with its own segments: start and end swapped, nexts identical | R3.5                |
-| D6   | an OUTPUT without its own segments: start and end on the picked segment | R3.6                |
+| Kind | What may differ                                                                              | Where it comes from |
+| ---- | -------------------------------------------------------------------------------------------- | ------------------- |
+| D1   | order of glyphs and arcs                                                                     | research R3.1       |
+| D2   | points of arcs of an edge with an OUTPUT, as Java's reversal would give                      | R3.2                |
+| D3   | `stoichiometry` → `cardinality`                                                              | R3.4                |
+| D4   | label box widths; only in bulk mode, against the published bulk file                         | R3.3                |
+| D5   | an OUTPUT with its own segments: start and end swapped, nexts identical                      | R3.5                |
+| D6   | an OUTPUT without its own segments: start and end from the output port to the backbone's end | R3.6                |
 
 **The rule for points (D2, D5, D6):** Java's points must equal one of Java's possible
 readings recomputed from the layout (the backbone as given or reversed when the arc starts,
 and for an OUTPUT reversed once more partway through, research R3.7); ours must equal the
 reading with the backbone as given, with D6 and then D5 applied. Anything else is
 undeclared.
+
+**D6 in terms of the layout:** for an OUTPUT without segments of its own, the start is the
+`from` of the backbone's last segment that touches the reaction's shape (the touch test
+above), the end is the backbone's last segment's `to`, and the next points are Java's: the
+`from` of each segment between.
 
 ## Event (website, WebsiteAngular's)
 

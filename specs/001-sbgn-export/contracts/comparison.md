@@ -12,7 +12,10 @@
   - **Points:** declared (D2, D5, D6) only with `--layout`, and only if Java's points are
     exactly one of Java's possible readings recomputed from the layout and ours exactly the
     deterministic one (research R3.7). Any other change of points is `undeclared`, with or
-    without `--layout`.
+    without `--layout`. For D6 the deterministic one is exact: Java's reading with the
+    backbone as given, its start replaced by the `from` of the backbone's last segment that
+    touches the reaction's shape and its end by the backbone's last `to`, its next points
+    unchanged (research R3.6).
   - **Widths (D4):** declared only with `--bulk`, which is for the published bulk file.
     Without it, a width difference is `undeclared`.
   - **In bulk mode** everything else is still checked: the names and list of files (when
