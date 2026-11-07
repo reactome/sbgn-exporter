@@ -1,0 +1,264 @@
+{
+  "stableId": "order",
+  "compartments": [],
+  "nodes": [
+    {
+      "id": 131,
+      "reactomeId": 9032,
+      "displayName": "entity 131",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "reactomeId": 9033,
+      "displayName": "entity 136",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 100,
+                "y": 120
+              },
+              "to": {
+                "x": 140,
+                "y": 130
+              }
+            },
+            {
+              "from": {
+                "x": 140,
+                "y": 130
+              },
+              "to": {
+                "x": 150,
+                "y": 140
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "reactomeId": 9034,
+      "displayName": "entity 132",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "reactomeId": 9035,
+      "displayName": "entity 133",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "CATALYST",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 134,
+      "reactomeId": 9036,
+      "displayName": "entity 134",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "OUTPUT",
+          "stoichiometry": {
+            "value": 1
+          },
+          "segments": [
+            {
+              "from": {
+                "x": 455,
+                "y": 185
+              },
+              "to": {
+                "x": 374,
+                "y": 185
+              }
+            },
+            {
+              "from": {
+                "x": 374,
+                "y": 185
+              },
+              "to": {
+                "x": 299,
+                "y": 162.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "reactomeId": 9037,
+      "displayName": "entity 135",
+      "renderableClass": "Protein",
+      "prop": {
+        "x": 0,
+        "y": 0,
+        "width": 60,
+        "height": 20
+      },
+      "connectors": [
+        {
+          "edgeId": 21,
+          "type": "INPUT",
+          "stoichiometry": {
+            "value": 1
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": 21,
+      "reactomeId": 9030,
+      "displayName": "reaction 21",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 293,
+          "y": 156.5
+        },
+        "b": {
+          "x": 305,
+          "y": 168.5
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 150,
+            "y": 140
+          },
+          "to": {
+            "x": 200,
+            "y": 162.5
+          }
+        },
+        {
+          "from": {
+            "x": 200,
+            "y": 162.5
+          },
+          "to": {
+            "x": 293,
+            "y": 162.5
+          }
+        },
+        {
+          "from": {
+            "x": 305,
+            "y": 162.5
+          },
+          "to": {
+            "x": 340,
+            "y": 162.5
+          }
+        },
+        {
+          "from": {
+            "x": 340,
+            "y": 162.5
+          },
+          "to": {
+            "x": 360,
+            "y": 150
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "reactomeId": 9031,
+      "displayName": "reaction 22",
+      "reactionShape": {
+        "type": "BOX",
+        "a": {
+          "x": 0,
+          "y": 0
+        },
+        "b": {
+          "x": 10,
+          "y": 10
+        }
+      },
+      "segments": [
+        {
+          "from": {
+            "x": 20,
+            "y": 5
+          },
+          "to": {
+            "x": 30,
+            "y": 5
+          }
+        }
+      ]
+    }
+  ]
+}
