@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The jars the reference harness runs (spec 001 T012), fetched when its image is built and
+  checked against jars.sha256 there. Only what SbgnConverter, diagram-reader's layout and
+  libSBGN's writer need at run time: diagram-exporter's and diagram-reader's own
+  dependency trees (graph-core, analysis-core, exporters for other formats) are left out.
+  The versions are those diagram-exporter 2.0.12 is built with (reactome-parent 1.0.5);
+  Jackson's are 2.13.4, a patch release of that line.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.reactome.sbgn-exporter</groupId>
+    <artifactId>reference-harness</artifactId>
+    <version>0</version>
+    <packaging>pom</packaging>
+
+    <repositories>
+        <!-- Reactome's own artifacts, as reactome-parent names the repository -->
+        <repository>
+            <id>nexus-ebi-repo</id>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+        </repository>
+        <!-- libSBGN 0.2, as diagram-exporter's build finds it -->
+        <repository>
+            <id>biopax-repo</id>
+            <url>https://www.biopax.org/m2repo/releases</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.reactome.server.tools</groupId>
+            <artifactId>diagram-exporter</artifactId>
+            <version>2.0.12</version>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.reactome.server.tools</groupId>
+            <artifactId>diagram-reader</artifactId>
+            <version>1.2.5</version>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.sbgn</groupId>
+            <artifactId>libsbgn</artifactId>
+            <version>0.2</version>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.4.2</version>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.13.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-mrbean</artifactId>
+            <version>2.13.4</version>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>
+</project>
