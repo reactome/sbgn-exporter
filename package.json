@@ -31,6 +31,6 @@
     "prettier": "3.9.10",
     "saxes": "6.0.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.1"
+    "typescript-eslint": "8.72.2"
   }
 }
