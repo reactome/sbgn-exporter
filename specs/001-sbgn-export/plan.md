@@ -115,6 +115,7 @@ ci/
 ├── compare.ts          # the comparison (R12)
 ├── validate.sh         # fetch the schema at its commit, check its hash, xmllint every file
 ├── float-check.ts      # every number of a bulk file against java-float
+├── width-check.ts      # every label box of Java's answers against the width table (T033)
 └── reference/          # the Java harness (R13), run by hand
 ```
 

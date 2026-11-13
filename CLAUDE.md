@@ -31,8 +31,9 @@ FR-003).
   `graph.ts`, the archive in `tar.ts`. Its graph driver is a development dependency: the
   `dist` branch drops it, so the website installs none of it.
 - **The comparison and checks** (`ci/`): `compare.ts` (by id, each difference given a
-  kind), `validate.sh` (libSBGN 0.2's schema), `float-check.ts`, `fixture-output.ts` (for
-  CI's `validate` job), `licences.ts`.
+  kind), `validate.sh` (libSBGN 0.2's schema), `float-check.ts`, `width-check.ts` (Java's
+  label boxes against the width table), `fixture-output.ts` (for CI's `validate` job),
+  `licences.ts`.
 - **Java's reference** (`ci/reference/`, run by hand, never in CI): `harness/` runs
   diagram-exporter 2.0.12 on layouts in a container with no network, Arial mounted from
   the host; `schematron/` runs libSBGN's PD rules; `widths/` measured the Arial table.
