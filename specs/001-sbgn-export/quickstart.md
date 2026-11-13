@@ -35,6 +35,7 @@ tar -tzf <published archive> | sort > <work>/java.txt
 diff <work>/ours.txt <work>/java.txt          # the same names
 # then, for every name: ci/compare.ts with the layout; ci/validate.sh over the folder
 node ci/float-check.ts <folder of Java's files> # every number Java wrote, re-derived
+node ci/width-check.ts <folder of Java's files> # every label box's width, against the table
 ```
 
 Expected: the same 1,390 names for release 98; no undeclared difference; every file valid;

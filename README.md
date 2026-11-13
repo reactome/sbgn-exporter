@@ -99,6 +99,8 @@ product arcs that run from the reaction to the product). The tools, from a check
 - `ci/validate.sh <folder>` validates every file against libSBGN 0.2's schema with
   xmllint; CI runs it over every fixture's output.
 - `node ci/float-check.ts <folder>` re-derives every number of Java's files from its text.
+- `node ci/width-check.ts <folder>` measures every label box of Java's files again with the
+  width table and reports any width that is not the table's (no D4 allowed).
 - `ci/reference/harness/` runs Java's own converter (diagram-exporter 2.0.12, Java 11,
   no network) on a layout or a folder of them, for the fixtures' Java answers;
   `ci/reference/schematron/` runs libSBGN's Process Description rules. Both are run by
