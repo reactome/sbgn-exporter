@@ -105,10 +105,11 @@ export async function pathwayList(graph, identifiers) {
 }
 /** neo4j-driver's driver for the settings: basic auth, integers as numbers. */
 function connect(settings) {
-    // Reactome's ids are well below 2^53.
-    return neo4j.driver(settings.uri, neo4j.auth.basic(settings.user, settings.password), {
-        disableLosslessIntegers: true,
-    });
+    // Reactome's ids are well below 2^53. neo4j-driver types its settings as a class, `Config`,
+    // which it exports as a type alone: an object literal is the only form there is to give.
+    return neo4j.driver(settings.uri, neo4j.auth.basic(settings.user, settings.password), 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-class-instance-assignment
+    { disableLosslessIntegers: true });
 }
 /**
  * A reader over Bolt: each query in its own read-only session on the settings' database.
