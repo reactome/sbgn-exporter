@@ -42,7 +42,9 @@ the command line's or the comparison's dependencies.
 ## The release's bulk file
 
 This command writes `homo_sapiens.sbgn.tar.gz`, in place of diagram-exporter's SBGN step
-(`--format sbgn --target "Homo sapiens"`). It runs from a checkout on Node 24:
+(`--format sbgn --target "Homo sapiens"`). The release runs it from the image CI pushes from
+`main` (`Jenkinsfile`), which sets no `SOURCE_DATE_EPOCH`, so the archive's file time is the
+run's. From a checkout on Node 24:
 
 ```sh
 npm ci

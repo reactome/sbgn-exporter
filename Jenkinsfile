@@ -59,7 +59,10 @@ pipeline{
 					sh "rm -rf ${env.OUTPUT_FOLDER}/*"
 					withCredentials([ usernamePassword(credentialsId: 'neo4jUsernamePassword', passwordVariable: 'neo4jPass', usernameVariable: 'neo4jUser') ])
 					{
+						// set +e: the shell runs with -e, which would leave before the log is shown,
+						// on the failure the log is for.
 						sh """\
+							set +e
 							docker run \\
 							-v \$(pwd)/${env.OUTPUT_FOLDER}:/out \\
 							-v ${diagramPath}:/diagrams:ro \\
@@ -94,6 +97,8 @@ pipeline{
 							before=\$(tar -tzf '${previous}' | grep -c '\\.sbgn\$')
 							echo "\$before in release ${previousReleaseVersion}'s"
 							[ \$(( count * 100 )) -ge \$(( before * 90 )) ]
+						else
+							echo "No release ${previousReleaseVersion} archive here: the count is not compared with it"
 						fi
 					"""
 				}
