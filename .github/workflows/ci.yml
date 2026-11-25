@@ -21,7 +21,7 @@ jobs:
             - uses: actions/checkout@v7
 
             - name: Formatted
-              run: npx --yes prettier@3.9.10 --check .
+              run: npx --yes prettier@3.10.1 --check .
 
             # The Java reference harness lives in ci/reference/ and must be tracked: an
             # unanchored `reference/` in .gitignore once ignored it (spec 001 T031), and an
@@ -100,7 +100,11 @@ jobs:
     # registry from main alone, as sbml-exporter's is. The registry sign-in is the
     # organisation's role for GitHub Actions (vars.AWS_ROLE), by OpenID Connect: no
     # stored keys.
+    #
+    # After the gates: an image is pushed only from a commit that passed them, so a failed
+    # check on main never becomes the release's image.
     image:
+        needs: [format, check, validate]
         runs-on: ubuntu-latest
         permissions:
             contents: read
